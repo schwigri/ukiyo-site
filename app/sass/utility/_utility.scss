@@ -1,0 +1,55 @@
+.bg-background {
+	background-color: var(--color--background);
+}
+
+.bg-theme {
+	background-color: var(--color--theme);
+}
+
+.color-background {
+	color: var(--color--background);
+}
+
+.color-foreground {
+	color: var(--color--foreground);
+}
+
+.region-2xs {
+	padding-block: var(--space-2xs);
+}
+
+.wrapper {
+	margin-inline: auto;
+	max-width: var(--wrapper-width);
+}
+
+.text-align-right {
+	text-align: right;
+}
+
+.font--2 {
+	font-size: var(--step--2);
+}
+
+.inline-row {
+	display: inline-flex;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	height: auto;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
+}
+
+.focus-visible:focus {
+	clip: initial;
+	width: auto;
+}

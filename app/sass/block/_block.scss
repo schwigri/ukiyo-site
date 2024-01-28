@@ -1,0 +1,33 @@
+.lang-switcher__link {
+	color: inherit;
+	padding-inline: 0.25em;
+}
+
+.lang-switcher__link:focus {
+	outline: none;
+	background-color: var(--color--highlight);
+	background-image: linear-gradient(to top, var(--color--foreground) 3px, var(--color--highlight) 3px, var(--color--highlight));
+	text-decoration: none;
+}
+
+.lang-switcher__link[aria-current=true] {
+	font-weight: 600;
+}
+
+.lang-switcher__spacer {
+	white-space: pre;
+}
+
+.lang-switcher {
+	list-style: none;
+	padding-left: 0;
+}
+
+.skip-link:focus {
+	background-color: var(--color--highlight);
+	border: 3px solid var(--color--foreground);
+	color: var(--color--foreground);
+	text-decoration: none;
+	outline: none;
+	padding: var(--space-2xs);
+}
