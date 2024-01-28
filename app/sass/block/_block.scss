@@ -1,3 +1,5 @@
+@import 'header';
+
 .lang-switcher__link {
 	color: inherit;
 	padding-inline: 0.25em;
@@ -30,4 +32,19 @@
 	text-decoration: none;
 	outline: none;
 	padding: var(--space-2xs);
+}
+
+.branding__link {
+	color: inherit;
+}
+
+.branding__link:focus,
+.branding__link:hover {
+	text-decoration: none;
+}
+
+.branding__link:focus {
+	box-shadow: 0 0 0 2px var(--color--background), 0 0 0 5px var(--color--foreground);
+	outline: 3px solid var(--color--highlight);
+	outline-offset: 5px;
 }

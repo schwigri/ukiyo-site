@@ -8,12 +8,14 @@ import {
 	useParams,
 } from '@remix-run/react';
 import { getLanguageFromParams, translate } from '~/services/i18n';
+import { Branding } from '~/components/Branding';
 import { LangSwitcher } from '~/components/LangSwitcher';
 import type { LinksFunction } from '@remix-run/cloudflare';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import '~/styles/styles.css';
 import '@fontsource/work-sans/400.css';
 import '@fontsource/work-sans/600.css';
+import '@fontsource/prompt/600.css';
 
 export default function App() {
 	const params = useParams();
@@ -27,21 +29,24 @@ export default function App() {
 				<Meta />
 				<Links />
 			</head>
-			<body className="bg-theme">
+			<body className="bg-theme color-foreground">
 				<a className="skip-link font--2 visually-hidden focus-visible" href="#main">
 					{translate(lang, 'Skip to content')}
 				</a>
 
-				<header>
-					<nav
-						aria-label="Language options"
-						className="bg-background color-foreground"
-					>
+				<header className="bg-background">
+					<nav aria-label={translate(lang, 'Language options')}>
 						<LangSwitcher />
 					</nav>
+
+					<div className="header region-xs-m">
+						<div className="wrapper row align-center justify-between">
+							<Branding />
+						</div>
+					</div>
 				</header>
 
-				<main>
+				<main className="bg-background">
 					<Outlet />
 				</main>
 

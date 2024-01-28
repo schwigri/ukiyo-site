@@ -21,6 +21,7 @@
 		"watch:sass": "npm run build:sass && node-sass -rw ./app/sass -o ./app/styles"
 	},
 	"dependencies": {
+		"@fontsource/prompt": "^5.0.9",
 		"@fontsource/work-sans": "^5.0.16",
 		"@remix-run/cloudflare": "^2.5.1",
 		"@remix-run/cloudflare-pages": "^2.5.1",

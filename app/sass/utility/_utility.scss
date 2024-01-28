@@ -18,6 +18,14 @@
 	padding-block: var(--space-2xs);
 }
 
+.region-xs-m {
+	padding-block: var(--space-xs-m);
+}
+
+.gap-3xs {
+	gap: var(--space-3xs);
+}
+
 .wrapper {
 	margin-inline: auto;
 	max-width: var(--wrapper-width);
@@ -31,12 +39,20 @@
 	font-size: var(--step--2);
 }
 
+.row {
+	display: flex;
+}
+
 .inline-row {
 	display: inline-flex;
 }
 
 .align-center {
 	align-items: center;
+}
+
+.justify-between {
+	justify-content: space-between;
 }
 
 .visually-hidden {
@@ -52,4 +68,8 @@
 .focus-visible:focus {
 	clip: initial;
 	width: auto;
+}
+
+.font-branding {
+	font-family: var(--font-family--branding);
 }

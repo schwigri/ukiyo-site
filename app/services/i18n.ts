@@ -27,7 +27,7 @@ export const getLanguageFromParams = (params: Params): keyof typeof languages =>
 
 export const translations: Record<keyof typeof languages, Record<string, string>> = {
 	de: {
-		'Skip to content': '',
+		'Skip to content': 'Zum Hauptinhalt wechseln',
 	},
 	en: {},
 	ja: {
