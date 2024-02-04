@@ -1,17 +1,31 @@
-import { NavLink, useParams } from '@remix-run/react';
-import { getLanguageFromParams, languages } from '~/services/i18n';
+import { Link, useParams, useLocation } from '@remix-run/react';
+import { getLanguage, languages } from '~/services/i18n';
 
-export function LangSwitcher() {
-	const lang = getLanguageFromParams(useParams());
+interface LangSwitcherProps {
+	readonly className?: string;
+}
+
+export function LangSwitcher({ className }: LangSwitcherProps) {
+	const params = useParams();
+	const location = useLocation();
+
+	const lang = getLanguage(params, location);
+
+	const classNames = (className ? [className] : []).concat([
+		'lang-switcher',
+		'wrapper',
+		'font--2',
+		'text-align-right',
+	]);
 
 	return (
-		<ul className="lang-switcher wrapper font--2 text-align-right">
+		<ul className={classNames.join(' ')}>
 			{Object.entries(languages).sort().map(([langCode, langName], index, array) => (
 				<li
 					className="lang-switcher__item inline-row align-center"
 					key={langCode}
 				>
-					<NavLink
+					<Link
 						aria-current={langCode === lang ? 'true' : undefined}
 						className="lang-switcher__link region-2xs"
 						hrefLang={langCode}
@@ -19,7 +33,7 @@ export function LangSwitcher() {
 						to={langCode === 'en' ? '/' : `/${langCode}/`}
 					>
 						{langName}
-					</NavLink>
+					</Link>
 
 					{index !== array.length - 1 ? (
 						<span aria-hidden="true" className="lang-switcher__spacer"> / </span>

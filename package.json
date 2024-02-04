@@ -10,10 +10,11 @@
 	"author": "Griffen Schwiesow",
 	"repository": "github:schwigri/ukiyo-site",
 	"scripts": {
-		"build": "run-s build:sass build:remix",
+		"build": "run-s gulp build:sass build:remix",
 		"build:remix": "remix build",
 		"build:sass": "node-sass ./app/sass -o ./app/styles --output-style compressed",
 		"dev": "run-p watch:**",
+		"gulp": "gulp",
 		"lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
 		"start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
 		"typecheck": "tsc",
@@ -21,6 +22,7 @@
 		"watch:sass": "npm run build:sass && node-sass -rw ./app/sass -o ./app/styles"
 	},
 	"dependencies": {
+		"@fontsource/m-plus-1": "^5.0.15",
 		"@fontsource/prompt": "^5.0.9",
 		"@fontsource/work-sans": "^5.0.16",
 		"@remix-run/cloudflare": "^2.5.1",
@@ -38,6 +40,7 @@
 		"@types/react": "^18.2.48",
 		"@types/react-dom": "^18.2.18",
 		"@typescript-eslint/eslint-plugin": "^6.19.1",
+		"dotenv": "^16.4.1",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-import-resolver-typescript": "^3.6.1",
@@ -45,6 +48,8 @@
 		"eslint-plugin-jsx-a11y": "^6.8.0",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
+		"gulp": "^4.0.2",
+		"gulp-rename": "^2.0.0",
 		"npm-run-all": "^4.1.5",
 		"typescript": "^5.3.3",
 		"wrangler": "^3.25.0"

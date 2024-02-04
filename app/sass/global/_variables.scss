@@ -9,8 +9,8 @@
 	--color--subtitle: #666;
 	--color--highlight: hsl(50, 100%, 50%);
 
-	--font-family--branding: Prompt, "Work Sans", sans-serif;
-	--font-family--copy: "Work Sans", sans-serif;
+	--font-family--branding: Prompt, "Work Sans", "M Plus 1", sans-serif;
+	--font-family--copy: "Work Sans", "M Plus 1", sans-serif;
 
 	--step--2: clamp(0.7813rem, 0.7469rem + 0.1717vw, 0.88rem);
 	--step--1: clamp(0.9375rem, 0.881rem + 0.2826vw, 1.1rem);
@@ -54,7 +54,7 @@
 		--color--foreground: #ddd;
 		--color--shadow: rgba(255, 255, 255, 0.5);
 		--color--subtitle: #999;
-		--color--highlight: hsl(50, 100%, 28%);
+		--color--highlight: hsl(50, 100%, 26%);
 	}
 }
 
@@ -67,5 +67,6 @@
 @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
 	:root {
 		--color--accent: hsl(220, 85%, 72%);
+		--color--highlight: hsl(50, 100%, 20%);
 	}
 }

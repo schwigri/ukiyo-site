@@ -1,4 +1,5 @@
 @import 'header';
+@import 'menu';
 
 .lang-switcher__link {
 	color: inherit;
@@ -32,6 +33,7 @@
 	text-decoration: none;
 	outline: none;
 	padding: var(--space-2xs);
+	z-index: 3;
 }
 
 .branding__link {
@@ -47,4 +49,7 @@
 	box-shadow: 0 0 0 2px var(--color--background), 0 0 0 5px var(--color--foreground);
 	outline: 3px solid var(--color--highlight);
 	outline-offset: 5px;
+}
+
+.main {
 }

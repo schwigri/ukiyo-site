@@ -1,4 +1,4 @@
-import { Params } from '@remix-run/react';
+import { Location, Params } from '@remix-run/react';
 
 export const languages = {
 	de: 'Deutsch',
@@ -25,12 +25,40 @@ export const getLanguageFromParams = (params: Params): keyof typeof languages =>
 	return defaultLanguage;
 };
 
+export const getLanguage = (params: Params, location?: Location): keyof typeof languages => {
+	if (params.lang && isSupportedLanguage(params.lang)) {
+		return params.lang;
+	}
+
+	if (location) {
+		for (const language in languages) {
+			if (location.pathname.startsWith(`/${language}`)) {
+				return isSupportedLanguage(language) ? language : defaultLanguage;
+			}
+		}
+	}
+
+	return defaultLanguage;
+};
+
 export const translations: Record<keyof typeof languages, Record<string, string>> = {
 	de: {
+		'/about': '/de/ueber-mich',
+		'About': 'Über mich',
+		'Language options': 'Sprachoptionen',
 		'Skip to content': 'Zum Hauptinhalt wechseln',
+		'Work': 'Werk',
 	},
 	en: {},
 	ja: {
+		'/about': '/ja/自己紹介',
+		'About': 'プロフィール',
+		'Blog': 'ブログ',
+		'Griffen': 'グリフィン',
+		'Griffen Schwiesow': 'グリフィン・シュヴィーゾー',
+		'Language options': '言語',
+		'Main': 'メイン',
 		'Skip to content': '内容へ',
+		'Work': '作品集',
 	},
 };
