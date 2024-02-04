@@ -17,14 +17,6 @@ export const translate = (lang: keyof typeof languages = defaultLanguage, str: s
 	return translations[lang][str] ?? fallback;
 };
 
-export const getLanguageFromParams = (params: Params): keyof typeof languages => {
-	if (params.lang && isSupportedLanguage(params.lang)) {
-		return params.lang;
-	}
-
-	return defaultLanguage;
-};
-
 export const getLanguage = (params: Params, location?: Location): keyof typeof languages => {
 	if (params.lang && isSupportedLanguage(params.lang)) {
 		return params.lang;

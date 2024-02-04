@@ -5,9 +5,10 @@ import {
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	useLocation,
 	useParams,
 } from '@remix-run/react';
-import { getLanguageFromParams, translate } from '~/services/i18n';
+import { getLanguage, translate } from '~/services/i18n';
 import { Branding } from '~/components/Branding';
 import { LangSwitcher } from '~/components/LangSwitcher';
 import type { LinksFunction } from '@remix-run/cloudflare';
@@ -22,7 +23,8 @@ import '@fontsource/m-plus-1/600.css';
 
 export default function App() {
 	const params = useParams();
-	const lang = getLanguageFromParams(params);
+	const location = useLocation();
+	const lang = getLanguage(params, location);
 
 	return (
 		<html lang={lang}>
