@@ -1,18 +1,6 @@
-import {
-	Links,
-	LiveReload,
-	Meta,
-	Outlet,
-	Scripts,
-	ScrollRestoration,
-	useLocation,
-	useParams,
-} from '@remix-run/react';
-import { getLanguage, translate } from '~/services/i18n';
-import { Branding } from '~/components/Branding';
-import { LangSwitcher } from '~/components/LangSwitcher';
+import { Layout } from './components/Layout';
 import type { LinksFunction } from '@remix-run/cloudflare';
-import { Menu } from '~/components/Menu';
+import { Outlet, isRouteErrorResponse, useLocation, useParams, useRouteError } from '@remix-run/react';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import '~/styles/styles.css';
 import '@fontsource/work-sans/400.css';
@@ -20,61 +8,45 @@ import '@fontsource/work-sans/600.css';
 import '@fontsource/prompt/600.css';
 import '@fontsource/m-plus-1/400.css';
 import '@fontsource/m-plus-1/600.css';
+import { getLanguage, translate } from './services/i18n';
 
 export default function App() {
-	const params = useParams();
-	const location = useLocation();
-	const lang = getLanguage(params, location);
-
 	return (
-		<html lang={lang}>
-			<head>
-				<meta charSet="utf-8" />
-				<meta content="width=device-width, initial-scale=1" name="viewport" />
-				<Meta />
-				<Links />
-			</head>
-			<body className="bg-theme color-foreground">
-				<a className="skip-link font--2 visually-hidden focus-visible" href="#main">
-					{translate(lang, 'Skip to content')}
-				</a>
-
-				<header className="bg-background">
-					<nav
-						aria-label={translate(lang, 'Language options')}
-						className="upon-md"
-					>
-						<LangSwitcher />
-					</nav>
-
-					<div className="header region-xs-m">
-						<nav
-							aria-label={translate(lang, 'Main')}
-							className="wrapper row align-center justify-between"
-						>
-							<Branding />
-
-							<Menu />
-						</nav>
-					</div>
-				</header>
-
-				<main className="main bg-background region-xl">
-					<Outlet />
-				</main>
-
-				<footer>
-					footer
-				</footer>
-
-				<ScrollRestoration />
-				<Scripts />
-				<LiveReload />
-			</body>
-		</html>
+		<Layout>
+			<Outlet />
+		</Layout>
 	);
 }
 
 export const links: LinksFunction = () => [
 	...(cssBundleHref ? [{ href: cssBundleHref, rel: 'stylesheet' }] : []),
 ];
+
+export function ErrorBoundary() {
+	const error = useRouteError();
+
+	const params = useParams();
+	const location = useLocation();
+	const lang = getLanguage(params, location);
+
+	console.log('isRouteErrorResponse', isRouteErrorResponse(error));
+	console.log('error', error);
+
+	return (
+		<Layout>
+			{isRouteErrorResponse(error) ? (
+				<h1 className="wrapper text-align-center">{error.status} {translate(lang, error.statusText)}</h1>
+			) : error instanceof Error ? (
+				<div>
+					<h1>Error</h1>
+					<p>{error.message}</p>
+					<pre>{error.stack}</pre>
+				</div>
+			) : (
+				<div>
+					<h1>Unknown error</h1>
+				</div>
+			)}
+		</Layout>
+	);
+}

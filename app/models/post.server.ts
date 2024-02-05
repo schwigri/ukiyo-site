@@ -9,14 +9,16 @@ interface Post {
 
 export function getPosts(lang: keyof typeof languages): ReadonlyArray<Post> {
 	switch (lang) {
+		case 'de':
+			return [];
+
+		case 'ja':
+			return [];
+
+		case 'en':
+			return [];
+
 		default:
-			return [
-				{
-					year: 2024,
-					month: 2,
-					day: 3,
-					slug: 'sdf',
-				}
-			];
+			return [];
 	}
 }

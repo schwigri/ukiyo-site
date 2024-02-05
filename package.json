@@ -10,7 +10,7 @@
 	"author": "Griffen Schwiesow",
 	"repository": "github:schwigri/ukiyo-site",
 	"scripts": {
-		"build": "run-s gulp build:sass build:remix",
+		"build": "run-s build:sass build:remix",
 		"build:remix": "remix build",
 		"build:sass": "node-sass ./app/sass -o ./app/styles --output-style compressed",
 		"dev": "run-p watch:**",
@@ -29,6 +29,7 @@
 		"@remix-run/cloudflare-pages": "^2.5.1",
 		"@remix-run/css-bundle": "^2.5.1",
 		"@remix-run/react": "^2.5.1",
+		"fast-xml-parser": "^4.3.4",
 		"isbot": "^4.4.0",
 		"node-sass": "^9.0.0",
 		"react": "^18.2.0",
@@ -48,8 +49,6 @@
 		"eslint-plugin-jsx-a11y": "^6.8.0",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
-		"gulp": "^4.0.2",
-		"gulp-rename": "^2.0.0",
 		"npm-run-all": "^4.1.5",
 		"typescript": "^5.3.3",
 		"wrangler": "^3.25.0"
