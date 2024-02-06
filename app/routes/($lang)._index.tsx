@@ -28,11 +28,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 	const { lang } = params;
 
 	if (lang && (lang === 'en' || !isSupportedLanguage(lang))) {
-		if (lang === 'sitemap.xml') {
-			console.log('here');
-			return new Response('<?xml?>', { status: 200, headers: { 'content-type': 'application/xml' } })
-		}
-
 		// If `lang` is a page for default lang, we should render that
 
 		if (lang === 'about') {

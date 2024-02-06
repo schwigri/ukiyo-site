@@ -1,5 +1,7 @@
 import { isSupportedLanguage, languages, translate } from '~/services/i18n';
 import { XMLBuilder } from 'fast-xml-parser';
+import { getPosts } from '~/models/post.server';
+import { getWorks } from '~/models/work.server';
 
 export const loader = () => {
 	const builder = new XMLBuilder({
@@ -39,6 +41,7 @@ export const loader = () => {
 						}),
 					};
 				}),
+				// About pages
 				...Object.keys(languages).map((language) => {
 					if (!isSupportedLanguage(language)) {
 						throw new Error('Unknown language processing error');
@@ -60,6 +63,66 @@ export const loader = () => {
 						}),
 					};
 				}),
+				// Work pages
+				...Object.keys(languages).map((language) => {
+					if (!isSupportedLanguage(language)) {
+						throw new Error('Unknown language processing error');
+					}
+
+					const works = getWorks(language);
+
+					if (works.length > 0) {
+						return [
+							{
+								loc: translate(language, 'https://www.schwigri.com/work/'),
+								lastmod: '2024-02-24',
+								'xhtml:link': Object.keys(language).map((subLanguage) => {
+									if (!isSupportedLanguage(subLanguage)) {
+										throw new Error('Unknown language processing error');
+									}
+
+									return {
+										'@_href': translate(subLanguage, 'https://www.schwigri.com/work/'),
+										'@_hreflang': subLanguage,
+										'@_rel': 'alternate',
+									};
+								}),
+							},
+							// @TODOD: add work links
+							// ...works.map(() => ({})),
+						];
+					}
+				}).flat(),
+				// Blog pages
+				...Object.keys(languages).map((language) => {
+					if (!isSupportedLanguage(language)) {
+						throw new Error('Unknown language processing error');
+					}
+
+					const posts = getPosts(language);
+
+					if (posts.length > 0) {
+						return [
+							{
+								loc: translate(language, 'https://www.schwigri.com/blog/'),
+								lastmod: '2024-02-24',
+								'xhtml:link': Object.keys(language).map((subLanguage) => {
+									if (!isSupportedLanguage(subLanguage)) {
+										throw new Error('Unknown language processing error');
+									}
+
+									return {
+										'@_href': translate(subLanguage, 'https://www.schwigri.com/blog/'),
+										'@_hreflang': subLanguage,
+										'@_rel': 'alternate',
+									};
+								}),
+							},
+							// @TODOD: add post links
+							// ...posts.map(() => ({})),
+						];
+					}
+				}).flat(),
 			],
 		},
 	});
