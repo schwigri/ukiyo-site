@@ -6,7 +6,7 @@ export const isAboutSlug = (lang: keyof typeof languages, slug: string): boolean
 			return slug === 'ueber-mich';
 
 		case 'en':
-			return slug === 'about';
+			return slug === 'about-me';
 
 		case 'ja':
 			return slug === 'プロフィール';

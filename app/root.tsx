@@ -1,14 +1,31 @@
-import { Layout } from './components/Layout';
-import type { LinksFunction } from '@remix-run/cloudflare';
-import { Outlet, isRouteErrorResponse, useLocation, useParams, useRouteError } from '@remix-run/react';
+import {
+	Links,
+	LiveReload,
+	Meta,
+	Outlet,
+	Scripts,
+	ScrollRestoration,
+	isRouteErrorResponse,
+	useLoaderData,
+	useLocation,
+	useParams,
+	useRouteError,
+} from '@remix-run/react';
+import type { LinksFunction, LoaderFunctionArgs} from '@remix-run/cloudflare';
+import { getLanguage, isSupportedLanguage, translate } from '~/services/i18n';
+import { Branding } from '~/components/Branding';
+import { LangSwitcher } from '~/components/LangSwitcher';
+import { Menu } from '~/components/Menu';
+import type { PropsWithChildren } from 'react';
 import { cssBundleHref } from '@remix-run/css-bundle';
+import { getPosts } from '~/models/post.server';
+import { getWorks } from '~/models/work.server';
 import '~/styles/styles.css';
 import '@fontsource/work-sans/400.css';
 import '@fontsource/work-sans/600.css';
 import '@fontsource/prompt/600.css';
 import '@fontsource/m-plus-1/400.css';
 import '@fontsource/m-plus-1/600.css';
-import { getLanguage, translate } from './services/i18n';
 
 export default function App() {
 	return (
@@ -17,6 +34,24 @@ export default function App() {
 		</Layout>
 	);
 }
+
+export const loader = ({ params }: LoaderFunctionArgs) => {
+	const { lang = 'en' } = params;
+
+	if (!isSupportedLanguage(lang)) {
+		console.log('hmm weird situation', lang);
+	}
+
+	const parsedLang = isSupportedLanguage(lang) ? lang : 'en';
+
+	const posts = getPosts(parsedLang);
+	const works = getWorks(parsedLang);
+
+	return {
+		posts,
+		works,
+	};
+};
 
 export const links: LinksFunction = () => [
 	...(cssBundleHref ? [{ href: cssBundleHref, rel: 'stylesheet' }] : []),
@@ -28,9 +63,6 @@ export function ErrorBoundary() {
 	const params = useParams();
 	const location = useLocation();
 	const lang = getLanguage(params, location);
-
-	console.log('isRouteErrorResponse', isRouteErrorResponse(error));
-	console.log('error', error);
 
 	return (
 		<Layout>
@@ -48,5 +80,64 @@ export function ErrorBoundary() {
 				</div>
 			)}
 		</Layout>
+	);
+}
+
+function Layout({ children }: PropsWithChildren) {
+	const params = useParams();
+	const location = useLocation();
+	const lang = getLanguage(params, location);
+	const { posts, works } = useLoaderData<typeof loader>();
+
+	return (
+		<html lang={lang}>
+			<head>
+				<meta charSet="utf-8" />
+				<meta content="width=device-width, initial-scale=1" name="viewport" />
+				<Meta />
+				<Links />
+			</head>
+			<body className="bg-theme color-foreground">
+				<a className="skip-link font--2 visually-hidden focus-visible" href="#main">
+					{translate(lang, 'Skip to content')}
+				</a>
+
+				<header className="bg-background">
+					<nav
+						aria-label={translate(lang, 'Language options')}
+						className="upon-md"
+					>
+						<LangSwitcher />
+					</nav>
+
+					<div className="header region-xs-m">
+						<nav
+							aria-label={translate(lang, 'Main')}
+							className="wrapper row align-center justify-between"
+						>
+							<Branding />
+
+							<Menu
+								hasBlog={!!posts.length}
+								hasWork={!!works.length}
+								key={`root-menu--${lang}`}
+							/>
+						</nav>
+					</div>
+				</header>
+
+				<main className="main bg-background" id="main">
+					{children}
+				</main>
+
+				<footer className="footer">
+					Footer
+				</footer>
+
+				<ScrollRestoration />
+				<Scripts />
+				<LiveReload />
+			</body>
+		</html>
 	);
 }

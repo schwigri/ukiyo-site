@@ -5,6 +5,9 @@ import { useLoaderData } from '@remix-run/react';
 import { getPosts } from '~/models/post.server';
 import { getWorks } from '~/models/work.server';
 import { isSupportedLanguage, languages, translate } from '~/services/i18n';
+import { isAboutSlug } from '~/services/about.server';
+import { isBlogSlug } from '~/services/blog.server';
+import { isWorkSlug } from '~/services/work.server';
 
 export default function Index() {
 	const { pageType } = useLoaderData<typeof loader>();
@@ -30,19 +33,19 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 	if (lang && (lang === 'en' || !isSupportedLanguage(lang))) {
 		// If `lang` is a page for default lang, we should render that
 
-		if (lang === 'about') {
+		if (isAboutSlug('en', lang)) {
 			return {
 				pageType: 'about',
 			};
 		}
 
-		if (lang === 'blog' && getPosts('en').length) {
+		if (isBlogSlug('en', lang) && getPosts('en').length) {
 			return {
 				pageType: 'blog',
 			};
 		}
 
-		if (lang === 'work' && getWorks('en').length) {
+		if (isWorkSlug('en', lang) && getWorks('en').length) {
 			return {
 				pageType: 'work',
 			};
@@ -75,7 +78,7 @@ export const meta: MetaFunction = ({ params }) => {
 
 					return {
 						href: translate(language, 'https://www.schwigri.com/about/'),
-						hreflang: language,
+						hrefLang: language,
 						rel: 'alternate',
 						tagName: 'link',
 					};
@@ -98,7 +101,7 @@ export const meta: MetaFunction = ({ params }) => {
 
 					return {
 						href: translate(language, 'https://www.schwigri.com/blog/'),
-						hreflang: language,
+						hrefLang: language,
 						rel: 'alternate',
 						tagName: 'link',
 					};
@@ -121,7 +124,7 @@ export const meta: MetaFunction = ({ params }) => {
 
 					return {
 						href: translate(language, 'https://www.schwigri.com/work/'),
-						hreflang: language,
+						hrefLang: language,
 						rel: 'alternate',
 						tagName: 'link',
 					};
@@ -146,7 +149,7 @@ export const meta: MetaFunction = ({ params }) => {
 
 			return {
 				href: translate(language, 'https://www.schwigri.com/'),
-				hreflang: language,
+				hrefLang: language,
 				rel: 'alternate',
 				tagName: 'link',
 			};

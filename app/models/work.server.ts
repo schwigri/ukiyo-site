@@ -11,7 +11,7 @@ export function getWorks(lang: keyof typeof languages): ReadonlyArray<Work> {
 			return [];
 
 		case 'en':
-			return [];
+			return [{}];
 
 		default:
 			return [];

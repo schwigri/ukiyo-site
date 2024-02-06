@@ -35,10 +35,10 @@ export const getLanguage = (params: Params, location?: Location): keyof typeof l
 
 export const translations: Record<keyof typeof languages, Record<string, string>> = {
 	de: {
-		'/about': '/de/ueber-mich',
+		'/about-me': '/de/ueber-mich',
 		'/blog': '/de/blog',
 		'/work': '/de/werken',
-		'About': 'Über mich',
+		'About me': 'Über mich',
 		'https://www.schwigri.com/': 'https://www.schwigri.com/de/',
 		'https://www.schwigri.com/about-me/': 'https://www.schwigri.com/de/ueber-mich/',
 		'https://www.schwigri.com/blog/': 'https://www.schwigri.com/de/blog/',
@@ -52,10 +52,10 @@ export const translations: Record<keyof typeof languages, Record<string, string>
 		'Not Found': 'Page not found',
 	},
 	ja: {
-		'/about': '/ja/プロフィール',
+		'/about-me': '/ja/プロフィール',
 		'/blog': '/ja/ブログ',
 		'/work': '/ja/作品集',
-		'About': 'プロフィール',
+		'About me': 'プロフィール',
 		'https://www.schwigri.com/': 'https://www.schwigri.com/ja/',
 		'https://www.schwigri.com/about-me/': 'https://www.schwigri.com/ja/プロフィール/',
 		'https://www.schwigri.com/blog/': 'https://www.schwigri.com/ja/ブログ/',

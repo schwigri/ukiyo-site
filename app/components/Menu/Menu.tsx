@@ -1,13 +1,14 @@
 import { NavLink, useLocation, useParams } from '@remix-run/react';
 import { getLanguage, translate } from '~/services/i18n';
-import { getPosts } from '~/models/post.server';
-import { getWorks } from '~/models/work.server';
 import { useState } from 'react';
 
-export function Menu() {
+interface MenuProps {
+	readonly hasBlog?: boolean;
+	readonly hasWork?: boolean;
+}
+
+export function Menu({ hasBlog, hasWork }: MenuProps) {
 	const lang = getLanguage(useParams(), useLocation());
-	const posts = getPosts(lang);
-	const works = getWorks(lang);
 
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -17,8 +18,7 @@ export function Menu() {
 				aria-controls="menu"
 				aria-expanded={menuOpen ? 'true' : 'false'}
 				className="menu-toggle until-md"
-				onClick={() => setMenuOpen(!menuOpen)}
-				type="button"
+				onClick={() => setMenuOpen((open) => !open)}
 			>
 				{translate(lang, 'Menu')}
 			</button>
@@ -26,12 +26,12 @@ export function Menu() {
 			<div className="menu" id="menu">
 				<ul className="row gap-m font-1 bold" role="list">
 					<li>
-						<NavLink className="menu__link" to={translate(lang, '/about')}>
-							{translate(lang, 'About')}
+						<NavLink className="menu__link" to={translate(lang, '/about-me')}>
+							{translate(lang, 'About me')}
 						</NavLink>
 					</li>
 
-					{works.length ? (
+					{hasWork ? (
 						<li>
 							<NavLink className="menu__link" to={translate(lang, '/work')}>
 								{translate(lang, 'Work')}
@@ -39,10 +39,10 @@ export function Menu() {
 						</li>
 					) : null}
 
-					{posts.length ? (
+					{hasBlog ? (
 						<li>
 							<NavLink className="menu__link" to={translate(lang, '/blog')}>
-								{translate(lang, ('Blog'))}
+								{translate(lang, 'Blog')}
 							</NavLink>
 						</li>
 					) : null}
