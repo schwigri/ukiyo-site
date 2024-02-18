@@ -152,7 +152,7 @@ function Layout({ children }: PropsWithChildren) {
 					{children}
 				</main>
 
-				<footer className="footer wrapper align-center region-xs-m row justify-between color-accent-foreground font--2">
+				<footer className="footer gap-3xs wrapper align-baseline region-xs-m row justify-between color-accent-foreground font--2">
 					<p>
 						<span>{translate(lang, 'Copyright © Griffen Schwiesow')}</span>
 						<span className="spacing-3xs"> / </span>
