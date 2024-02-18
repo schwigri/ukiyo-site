@@ -96,7 +96,7 @@
 	}
 
 	.menu .lang-switcher {
-		margin-inline: -0.25em;
+		margin-inline: calc(-1 * var(--space-3xs));
 	}
 
 	.branding__link,

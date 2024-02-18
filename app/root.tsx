@@ -127,7 +127,7 @@ function Layout({ children }: PropsWithChildren) {
 				<header className="bg-background">
 					<nav
 						aria-label={translate(lang, 'Language options')}
-						className="upon-md font--2 text-align-right wrapper"
+						className="top-nav upon-md font--2 text-align-right wrapper"
 					>
 						<LangSwitcher />
 					</nav>
@@ -153,7 +153,23 @@ function Layout({ children }: PropsWithChildren) {
 				</main>
 
 				<footer className="footer wrapper align-center region-xs-m row justify-between color-accent-foreground font--2">
-					<p>{translate(lang, 'Copyright © Griffen Schwiesow')}</p>
+					<p>
+						<span>{translate(lang, 'Copyright © Griffen Schwiesow')}</span>
+						<span className="spacing-3xs"> / </span>
+						<a
+							className="link"
+							href="https://github.com/schwigri/ukiyo-site"
+							rel="noopener nofollow"
+						>
+							{translate(lang, 'Made with 🎔').split('🎔').map((item, i, arr) => {
+								if (i === arr.length - 1) {
+									return item;
+								}
+
+								return [item, <span aria-label={translate(lang, 'love')} className="font-symbols">🎔</span>];
+							})}
+						</a>
+					</p>
 
 					<LangSwitcher />
 				</footer>

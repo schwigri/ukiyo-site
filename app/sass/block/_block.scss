@@ -1,9 +1,16 @@
 @import 'header';
 @import 'menu';
 
+.link:focus {
+	background-color: var(--color--highlight);
+	border-bottom: 3px solid var(--color--foreground);
+	color: var(--color--foreground);
+	outline: none;
+	text-decoration: none;
+}
+
 .lang-switcher__link {
 	color: inherit;
-	padding-inline: 0.25em;
 }
 
 .lang-switcher__link:focus {
@@ -16,6 +23,12 @@
 
 .lang-switcher__link[aria-current=true] {
 	font-weight: 600;
+}
+
+.menu .lang-switcher__link,
+.top-nav .lang-switcher__link {
+	padding-block: var(--space-2xs);
+	padding-inline: var(--space-3xs);
 }
 
 .lang-switcher__spacer {
@@ -52,9 +65,19 @@
 	outline-offset: 5px;
 }
 
-@media (max-width: 487px) {
+.footer .lang-switcher__spacer {
+	padding-inline: var(--space-3xs);
+}
+
+.footer a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+@media (max-width: 899px) {
 	.footer {
 		justify-content: center;
 		flex-direction: column;
+		text-align: center;
 	}
 }

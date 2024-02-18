@@ -30,6 +30,10 @@
 	padding-block: var(--space-xl);
 }
 
+.spacing-3xs {
+	padding-inline: var(--space-3xs);
+}
+
 .gap-3xs {
 	gap: var(--space-3xs);
 }
@@ -101,6 +105,11 @@
 .font-branding {
 	font-family: var(--font-family--branding);
 	font-weight: 600;
+}
+
+.font-symbols {
+	font-family: var(--font-family--symbols);
+	font-weight: 400;
 }
 
 @media (min-width: 360px) {

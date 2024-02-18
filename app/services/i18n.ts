@@ -65,9 +65,11 @@ export const translations: Record<keyof typeof languages, Record<string, string>
 		'https://www.schwigri.com/blog/': 'https://www.schwigri.com/de/blog/',
 		'https://www.schwigri.com/work/': 'https://www.schwigri.com/de/werken/',
 		'Language options': 'Sprachoptionen',
+		'Made with 🎔': 'Mit 🎔 gemacht',
 		'Not Found': 'Seite nicht gefunden',
 		'Skip to content': 'Zum Hauptinhalt wechseln',
 		'Work': 'Werken',
+		'love': 'Liebe',
 	},
 	en: {
 		'Not Found': 'Page not found',
@@ -86,9 +88,11 @@ export const translations: Record<keyof typeof languages, Record<string, string>
 		'Griffen': 'グリフィン',
 		'Griffen Schwiesow': 'グリフィン・シュヴィーゾー',
 		'Language options': '言語',
+		'Made with 🎔': '🎔を込めてプログラミングを',
 		'Main': 'メイン',
 		'Not Found': 'お探しのページは見つからない',
 		'Skip to content': '内容へ',
 		'Work': '作品集',
+		'love': '愛',
 	},
 };

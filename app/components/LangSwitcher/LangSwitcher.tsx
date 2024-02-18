@@ -42,7 +42,7 @@ export function LangSwitcher({ className }: LangSwitcherProps) {
 					>
 						<Link
 							aria-current={langCode === lang ? 'true' : undefined}
-							className="lang-switcher__link region-2xs"
+							className="lang-switcher__link"
 							hrefLang={langCode}
 							lang={langCode}
 							to={destination}
