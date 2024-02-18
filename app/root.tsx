@@ -11,7 +11,7 @@ import {
 	useParams,
 	useRouteError,
 } from '@remix-run/react';
-import type { LinksFunction, LoaderFunctionArgs} from '@remix-run/cloudflare';
+import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/cloudflare';
 import { getLanguage, isSupportedLanguage, translate } from '~/services/i18n';
 import { Branding } from '~/components/Branding';
 import { LangSwitcher } from '~/components/LangSwitcher';
@@ -56,6 +56,27 @@ export const loader = ({ params }: LoaderFunctionArgs) => {
 
 export const links: LinksFunction = () => [
 	...(cssBundleHref ? [{ href: cssBundleHref, rel: 'stylesheet' }] : []),
+	{
+		href: '/apple-touch-icon.png',
+		rel: 'apple-touch-icon',
+		sizes: '180x180',
+	},
+	{
+		href: '/favicon-32x32.png',
+		rel: 'icon',
+		type: 'icon/png',
+		sizes: '32x32',
+	},
+	{
+		href: '/favicon-16x16.png',
+		rel: 'icon',
+		type: 'icon/png',
+		sizes: '16x16',
+	},
+	{
+		href: '/site.webmanifest',
+		rel: 'manifest',
+	},
 ];
 
 export function ErrorBoundary() {

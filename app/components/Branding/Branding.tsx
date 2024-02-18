@@ -1,6 +1,5 @@
 import { Link, useLocation, useParams } from '@remix-run/react';
 import { defaultLanguage, getLanguage, languages, translate } from '~/services/i18n';
-import icon from '../../graphics/icon.png';
 
 export function Branding() {
 	const params = useParams();
@@ -9,7 +8,13 @@ export function Branding() {
 
 	const content = (
 		<>
-			<img alt="" src={icon} style={{ height: '40px' }} />
+			<img
+				alt=""
+				height="40px"
+				src="/logo.png"
+				srcSet="/logo.png, /logo@2x.png 2x, /logo@3x.png 3x"
+				width="40px"
+			/>
 			<span className="until-sm">{translate(lang, 'Griffen')}</span>
 			<span className="upon-sm">{translate(lang, 'Griffen Schwiesow')}</span>
 		</>
