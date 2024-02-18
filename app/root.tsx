@@ -131,7 +131,7 @@ function Layout({ children }: PropsWithChildren) {
 					{children}
 				</main>
 
-				<footer className="footer wrapper align-center region-xs-m row justify-between color-background font--2">
+				<footer className="footer wrapper align-center region-xs-m row justify-between color-accent-foreground font--2">
 					<p>{translate(lang, 'Copyright © Griffen Schwiesow')}</p>
 
 					<LangSwitcher />
