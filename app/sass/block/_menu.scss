@@ -95,6 +95,16 @@
 		z-index: 1;
 	}
 
+	.menu::before {
+		background-color: var(--color--background);
+		content: '';
+		height: 1px;
+		left: 0;
+		position: absolute;
+		top: -1px;
+		width: 100%;
+	}
+
 	.menu .lang-switcher {
 		margin-inline: calc(-1 * var(--space-3xs));
 	}
