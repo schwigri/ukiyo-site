@@ -166,7 +166,7 @@ function Layout({ children }: PropsWithChildren) {
 									return item;
 								}
 
-								return [item, <span aria-label={translate(lang, 'love')} className="font-symbols">🎔</span>];
+								return [item, <span aria-label={translate(lang, 'love')} className="font-symbols" key={`${lang}-footer-heart`}>🎔</span>];
 							})}
 						</a>
 					</p>

@@ -5,9 +5,9 @@ import { BlogPage } from '~/components/BlogPage';
 import { HomePage } from '~/components/HomePage';
 import { getPosts } from '~/models/post.server';
 import { getWorks } from '~/models/work.server';
-import { isAboutSlug } from '~/services/about.server';
-import { isBlogSlug } from '~/services/blog.server';
-import { isWorkSlug } from '~/services/work.server';
+import { isAboutSlug } from '~/services/about';
+import { isBlogSlug } from '~/services/blog';
+import { isWorkSlug } from '~/services/work';
 import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 
@@ -65,9 +65,9 @@ export const meta: MetaFunction = ({ params }) => {
 	const { lang = 'en' } = params;
 
 	if (!isSupportedLanguage(lang)) {
-		if (lang === 'about') {
+		if (lang === 'about-me') {
 			return [
-				{ title: translate('en', 'About — Griffen Schwiesow') },
+				{ title: translate('en', 'About me — Griffen Schwiesow') },
 				{
 					href: translate('en', 'https://www.schwigri.com/about/'),
 					rel: 'canonical',
