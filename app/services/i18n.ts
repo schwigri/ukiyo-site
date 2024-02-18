@@ -33,6 +33,27 @@ export const getLanguage = (params: Params, location?: Location): keyof typeof l
 	return defaultLanguage;
 };
 
+export const getPageType = (params: Params, location: Location): string | null => {
+	const lang = getLanguage(params, location);
+
+	switch (decodeURIComponent(location.pathname)) {
+		case translate(lang, '/'):
+			return 'home';
+
+		case translate(lang, '/about-me'):
+			return 'about';
+
+		case translate(lang, '/work'):
+			return 'work';
+
+		case translate(lang, '/blog'):
+			return 'blog';
+
+		default:
+			return null;
+	}
+};
+
 export const translations: Record<keyof typeof languages, Record<string, string>> = {
 	de: {
 		'/about-me': '/de/ueber-mich',
@@ -56,6 +77,7 @@ export const translations: Record<keyof typeof languages, Record<string, string>
 		'/blog': '/ja/ブログ',
 		'/work': '/ja/作品集',
 		'About me': 'プロフィール',
+		'Copyright © Griffen Schwiesow': '令和六年 © グリフィン・シュヴィーゾー',
 		'https://www.schwigri.com/': 'https://www.schwigri.com/ja/',
 		'https://www.schwigri.com/about-me/': 'https://www.schwigri.com/ja/プロフィール/',
 		'https://www.schwigri.com/blog/': 'https://www.schwigri.com/ja/ブログ/',

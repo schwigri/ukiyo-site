@@ -20,6 +20,7 @@ import type { PropsWithChildren } from 'react';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import { getPosts } from '~/models/post.server';
 import { getWorks } from '~/models/work.server';
+import { json } from '@remix-run/cloudflare';
 import '~/styles/styles.css';
 import '@fontsource/work-sans/400.css';
 import '@fontsource/work-sans/600.css';
@@ -47,10 +48,10 @@ export const loader = ({ params }: LoaderFunctionArgs) => {
 	const posts = getPosts(parsedLang);
 	const works = getWorks(parsedLang);
 
-	return {
+	return json({
 		posts,
 		works,
-	};
+	});
 };
 
 export const links: LinksFunction = () => [
@@ -105,7 +106,7 @@ function Layout({ children }: PropsWithChildren) {
 				<header className="bg-background">
 					<nav
 						aria-label={translate(lang, 'Language options')}
-						className="upon-md"
+						className="upon-md font--2 text-align-right wrapper"
 					>
 						<LangSwitcher />
 					</nav>
@@ -130,8 +131,10 @@ function Layout({ children }: PropsWithChildren) {
 					{children}
 				</main>
 
-				<footer className="footer">
-					Footer
+				<footer className="footer wrapper align-center region-xs-m row justify-between color-background font--2">
+					<p>{translate(lang, 'Copyright © Griffen Schwiesow')}</p>
+
+					<LangSwitcher />
 				</footer>
 
 				<ScrollRestoration />

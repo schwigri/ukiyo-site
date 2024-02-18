@@ -1,13 +1,14 @@
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
+import { isSupportedLanguage, languages, translate } from '~/services/i18n';
 import { AboutPage } from '~/components/AboutPage';
 import { HomePage } from '~/components/HomePage';
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
-import { useLoaderData } from '@remix-run/react';
 import { getPosts } from '~/models/post.server';
 import { getWorks } from '~/models/work.server';
-import { isSupportedLanguage, languages, translate } from '~/services/i18n';
 import { isAboutSlug } from '~/services/about.server';
 import { isBlogSlug } from '~/services/blog.server';
 import { isWorkSlug } from '~/services/work.server';
+import { json } from '@remix-run/cloudflare';
+import { useLoaderData } from '@remix-run/react';
 
 export default function Index() {
 	const { pageType } = useLoaderData<typeof loader>();
@@ -34,29 +35,29 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 		// If `lang` is a page for default lang, we should render that
 
 		if (isAboutSlug('en', lang)) {
-			return {
+			return json({
 				pageType: 'about',
-			};
+			});
 		}
 
 		if (isBlogSlug('en', lang) && getPosts('en').length) {
-			return {
+			return json({
 				pageType: 'blog',
-			};
+			});
 		}
 
 		if (isWorkSlug('en', lang) && getWorks('en').length) {
-			return {
+			return json({
 				pageType: 'work',
-			};
+			});
 		}
 
 		throw new Response('Page not found index!!!', { status: 404 });
 	}
 
-	return {
+	return json({
 		pageType: 'home',
-	};
+	});
 };
 
 export const meta: MetaFunction = ({ params }) => {

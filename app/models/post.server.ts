@@ -10,13 +10,13 @@ interface Post {
 export function getPosts(lang: keyof typeof languages): ReadonlyArray<Post> {
 	switch (lang) {
 		case 'de':
-			return [];
+			return [{}];
 
 		case 'ja':
-			return [];
+			return [{}];
 
 		case 'en':
-			return [];
+			return [{}];
 
 		default:
 			return [];

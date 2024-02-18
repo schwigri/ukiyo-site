@@ -5,10 +5,10 @@ interface Work {}
 export function getWorks(lang: keyof typeof languages): ReadonlyArray<Work> {
 	switch (lang) {
 		case 'de':
-			return [];
+			return [{}];
 
 		case 'ja':
-			return [];
+			return [{}];
 
 		case 'en':
 			return [{}];
