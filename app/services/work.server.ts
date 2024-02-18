@@ -3,7 +3,7 @@ import { languages } from './i18n';
 export const isWorkSlug = (lang: keyof typeof languages, slug: string): boolean => {
 	switch (lang) {
 		case 'de':
-			return slug === 'werken';
+			return slug === 'arbeiten';
 
 		case 'en':
 			return slug === 'work';

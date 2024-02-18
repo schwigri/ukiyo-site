@@ -1,4 +1,5 @@
 import { AboutPage } from '~/components/AboutPage';
+import { BlogPage } from '~/components/BlogPage';
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
 import { getPosts } from '~/models/post.server';
 import { getWorks } from '~/models/work.server';
@@ -20,7 +21,7 @@ export default function Slug() {
 			return <p>Work page</p>;
 
 		case 'blog':
-			return <p>Blog page</p>;
+			return <BlogPage />;
 
 		default:
 			return <p>Slug page</p>;

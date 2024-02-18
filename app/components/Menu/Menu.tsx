@@ -1,7 +1,7 @@
 import { NavLink, useLocation, useParams } from '@remix-run/react';
 import { getLanguage, translate } from '~/services/i18n';
+import { useEffect, useState } from 'react';
 import { LangSwitcher } from '../LangSwitcher';
-import { useState } from 'react';
 
 interface MenuProps {
 	readonly hasBlog?: boolean;
@@ -9,9 +9,23 @@ interface MenuProps {
 }
 
 export function Menu({ hasBlog, hasWork }: MenuProps) {
-	const lang = getLanguage(useParams(), useLocation());
+	const location = useLocation();
+	const lang = getLanguage(useParams(), location);
 
 	const [menuOpen, setMenuOpen] = useState(false);
+	const [pageKey, setPageKey] = useState(location.key);
+
+	// close menu when we change pages, and set tab focus
+	useEffect(() => {
+		if (location.key !== pageKey) {
+			setPageKey(location.key);
+			setMenuOpen(false);
+
+			if (document.activeElement instanceof HTMLElement) {
+				document.activeElement.blur();
+			}
+		}
+	}, [pageKey, location]);
 
 	return (
 		<>

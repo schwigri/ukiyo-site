@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
 import { isSupportedLanguage, languages, translate } from '~/services/i18n';
 import { AboutPage } from '~/components/AboutPage';
+import { BlogPage } from '~/components/BlogPage';
 import { HomePage } from '~/components/HomePage';
 import { getPosts } from '~/models/post.server';
 import { getWorks } from '~/models/work.server';
@@ -21,7 +22,7 @@ export default function Index() {
 			return <p>Work page</p>;
 
 		case 'blog':
-			return <p>Blog page</p>;
+			return <BlogPage />;
 
 		default:
 			return <HomePage />;
