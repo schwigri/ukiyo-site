@@ -65,7 +65,7 @@
 	}
 }
 
-@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+@media only screen and (prefers-color-scheme: dark) and (prefers-contrast: more) {
 	:root {
 		--color--accent: hsl(220, 85%, 72%);
 		--color--highlight: hsl(50, 100%, 20%);

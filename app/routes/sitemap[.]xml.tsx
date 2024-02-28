@@ -1,7 +1,7 @@
 import { isSupportedLanguage, languages, translate } from '~/services/i18n';
 import { XMLBuilder } from 'fast-xml-parser';
-import { getPosts } from '~/models/post.server';
-import { getWorks } from '~/models/work.server';
+import { getPosts } from '~/models/post';
+import { getWorks } from '~/models/work';
 
 export const loader = () => {
 	const builder = new XMLBuilder({

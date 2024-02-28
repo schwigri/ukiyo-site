@@ -18,8 +18,8 @@ import { LangSwitcher } from '~/components/LangSwitcher';
 import { Menu } from '~/components/Menu';
 import type { PropsWithChildren } from 'react';
 import { cssBundleHref } from '@remix-run/css-bundle';
-import { getPosts } from '~/models/post.server';
-import { getWorks } from '~/models/work.server';
+import { getPosts } from '~/models/post';
+import { getWorks } from '~/models/work';
 import { json } from '@remix-run/cloudflare';
 import '~/styles/styles.css';
 import '@fontsource/work-sans/400.css';
@@ -87,7 +87,7 @@ export function ErrorBoundary() {
 	const lang = getLanguage(params, location);
 
 	return (
-		<Layout>
+		<Layout isError={true}>
 			{isRouteErrorResponse(error) ? (
 				<h1 className="wrapper text-align-center">{error.status} {translate(lang, error.statusText)}</h1>
 			) : error instanceof Error ? (
@@ -105,11 +105,18 @@ export function ErrorBoundary() {
 	);
 }
 
-function Layout({ children }: PropsWithChildren) {
+interface Props extends PropsWithChildren {
+	isError?: boolean;
+}
+
+function Layout({ children, isError }: Props) {
 	const params = useParams();
 	const location = useLocation();
 	const lang = getLanguage(params, location);
-	const { posts, works } = useLoaderData<typeof loader>();
+	const { posts, works } = isError ? {
+		posts: getPosts(lang),
+		works: getWorks(lang),
+	} : useLoaderData<typeof loader>();
 
 	return (
 		<html lang={lang}>
