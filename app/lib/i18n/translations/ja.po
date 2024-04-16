@@ -1,0 +1,72 @@
+# Japanese translations
+# Copyright © 2024 Griffen Schwiesow
+# This file is distributed under the CC BY-NC-SA 4.0 license.
+# Griffen Schwiesow, 2024
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"POT-Creation-Date: 2024-04-12 10:37-0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Griffen Schwiesow\n"
+"Language-Team: \n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+msgctxt "Language code"
+msgid "de"
+msgstr "Deutsch"
+
+msgctxt "Language code"
+msgid "en"
+msgstr "English"
+
+msgctxt "Language code"
+msgid "ja"
+msgstr "日本語"
+
+msgctxt "SEO"
+msgid "%s — Griffen Schwiesow"
+msgstr "%s｜グリフィン・シュヴィーゾー"
+
+msgctxt "SEO"
+msgid "Griffen Schwiesow — Designer, front-end developer and language enthusiast"
+msgstr "グリフィン・シュヴィーゾー｜デザイナー・デベロッパー・語学愛好家"
+
+msgid "Skip to content"
+msgstr "内容へ"
+
+msgid "Languages"
+msgstr "言語"
+
+msgid "Griffen"
+msgstr "グリフィン"
+
+msgid "Griffen Schwiesow"
+msgstr "グリフィン・シュヴィーゾー"
+
+msgid "Coming soon"
+msgstr "近日公開"
+
+msgid "Copyright © Griffen Schwiesow"
+msgstr "令和六年 © グリフィン・シュヴィーゾー"
+
+msgid "Made with %s"
+msgstr "%sを込めてプログラミングを"
+
+msgid "love"
+msgstr "愛"
+
+msgid "About me"
+msgstr "自己紹介"
+
+msgctxt "Slug"
+msgid "about-me"
+msgstr "自己紹介"
+
+msgctxt "Remix"
+msgid "Not Found"
+msgstr "見つからなかった"

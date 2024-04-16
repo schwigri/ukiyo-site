@@ -1,0 +1,10 @@
+node_modules
+
+.DS_Store
+/.cache
+/app/lib/i18n/translations/*.json
+/app/styles
+/build
+/public/symbols.woff
+/public/symbols.woff2
+.env

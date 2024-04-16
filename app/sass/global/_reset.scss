@@ -1,0 +1,31 @@
+body {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ol,
+ul {
+	margin: 0;
+}
+
+ol[role=list],
+ul[role=list] {
+	list-style: none;
+	padding-left: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}

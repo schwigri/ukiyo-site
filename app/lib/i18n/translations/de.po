@@ -1,0 +1,72 @@
+# German (CH) translations
+# Copyright © 2024 Griffen Schwiesow
+# This file is distributed under the CC BY-NC-SA 4.0 license.
+# Griffen Schwiesow, 2024
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"POT-Creation-Date: 2024-04-12 10:37-0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Griffen Schwiesow\n"
+"Language-Team: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n;"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+msgctxt "Language code"
+msgid "de"
+msgstr "Deutsch"
+
+msgctxt "Language code"
+msgid "en"
+msgstr "English"
+
+msgctxt "Language code"
+msgid "ja"
+msgstr "日本語"
+
+msgctxt "SEO"
+msgid "%s — Griffen Schwiesow"
+msgstr "%s – Griffen Schwiesow"
+
+msgctxt "SEO"
+msgid "Griffen Schwiesow — Designer, front-end developer and language enthusiast"
+msgstr "Griffen Schwiesow – Designer, Front-End-Entwickler, Sprachbegeisterter"
+
+msgid "Skip to content"
+msgstr "Zum Hauptinhalt wechseln"
+
+msgid "Languages"
+msgstr "Sprachen"
+
+msgid "Griffen"
+msgstr "Griffen"
+
+msgid "Griffen Schwiesow"
+msgstr "Griffen Schwiesow"
+
+msgid "Copyright © Griffen Schwiesow"
+msgstr "Copyright © Griffen Schwiesow"
+
+msgid "Coming soon"
+msgstr "Demnächst"
+
+msgid "Made with %s"
+msgstr "Hergestellt mit %s"
+
+msgid "love"
+msgstr "Liebe"
+
+msgid "About me"
+msgstr "Über mich"
+
+msgctxt "Slug"
+msgid "about-me"
+msgstr "ueber-mich"
+
+msgctxt "Remix"
+msgid "Not Found"
+msgstr "Nicht gefunden"

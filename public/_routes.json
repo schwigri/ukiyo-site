@@ -1,0 +1,5 @@
+{
+	"exclude": ["/favicon.ico", "/build/*"],
+	"include": ["/*"],
+	"version": 1
+}
