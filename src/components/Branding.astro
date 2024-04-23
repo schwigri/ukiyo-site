@@ -1,0 +1,24 @@
+---
+import logo from '~/assets/logo.svg';
+import { getLangFromUrl, getT } from '~/lib/i18n';
+
+interface Props {
+	readonly href?: string | undefined;
+}
+
+const { href } = Astro.props;
+const Wrapper = href && href !== '' ? 'a' : 'h1';
+const lang = getLangFromUrl(Astro.url);
+const t = getT(lang);
+---
+
+<Wrapper
+	class="[ branding__link ] [ text-foreground no-underline inline-flex items-center gap-3xs font-branding font-0 font-semibold m-0 outline-none ]"
+	href={Wrapper === 'a' ? href : undefined}
+>
+	<img alt="" height="40px" src={logo.src} width="40px" />
+
+	<span class="[ md:hidden ]">{t`Griffen`}</span>
+
+	<span class="[ hidden ] [ md:block ]">{t`Griffen Schwiesow`}</span>
+</Wrapper>

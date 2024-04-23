@@ -1,0 +1,45 @@
+// Padding
+
+.p-0 {
+	padding: 0px;
+}
+
+.px-3xs {
+	padding-left: var(--space-3xs);
+	padding-right: var(--space-3xs);
+}
+
+.p-2xs,
+.focus\:p-2xs:focus {
+	padding: var(--space-2xs);
+}
+
+.py-2xs {
+	padding-bottom: var(--space-2xs);
+	padding-top: var(--space-2xs);
+}
+
+.py-xs-m {
+	padding-bottom: var(--space-xs-m);
+	padding-top: var(--space-xs-m);
+}
+
+// Margin
+
+.m-0 {
+	margin: 0px;
+}
+
+.mx-auto {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.my-xs-m {
+	margin-bottom: var(--space-xs-m);
+	margin-top: var(--space-xs-m);
+}
+
+.mb-xs-m {
+	margin-bottom: var(--space-xs-m);
+}

@@ -1,0 +1,14 @@
+.breadcrumb__link[aria-current] {
+	@extend .no-underline;
+	@extend .text-inherit;
+	font-weight: 600;
+}
+
+.breadcrumb__link:focus {
+	background-color: var(--color--highlight);
+	border-bottom: 3px solid var(--color--foreground);
+	color: var(--color--foreground);
+	outline: none;
+	text-decoration: none;
+}
+

@@ -1,0 +1,43 @@
+---
+import { getEntry } from 'astro:content';
+import { getLangFromUrl, getT, langCodes, slug } from '~/lib/i18n';
+
+interface Props {
+	readonly class?: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = getT(lang);
+
+const pieces = decodeURIComponent(Astro.url.pathname).split('/').filter((piece) => piece && piece !== '');
+const collection = pieces.length > 2 ? 'posts' : 'pages';
+const entryId = collection === 'pages' ?
+	pieces.length === 1 ? `${lang}/${pieces[0]}` : pieces.join('/') :
+	'post';
+
+const entry = await getEntry({ collection, slug: entryId });
+---
+
+<nav aria-label={t`Breadcrumbs`} class={Astro.props.class}>
+	<ol class="[ flex list-none m-0 p-0 ]" role="list">
+		<li class="[ breadcrumb__item ]">
+			<a
+				aria-current={pieces.length === 0 || (pieces.length === 1 && langCodes.includes(pieces[0])) ? "true" : undefined}
+				class="[ breadcrumb__link ] [ text-accent ]"
+				href={slug(lang)}
+			>
+				<span aria-hidden="true" class="[ font-symbols ]">🏠</span>{t`Home`}
+			</a>
+		</li>
+
+		{entry && collection === 'pages' ? (
+			<li class="[ breadcrumb__item ]">
+				<span aria-hidden="true" class="[ whitespace-pre ]"> / </span><a aria-current="true" class="[ breadcrumb__link ]" href={Astro.url.pathname}>{entry.data.title}</a>
+			</li>
+		) : null}
+
+		{entry && collection === 'posts' ? (
+			<span>is a post</span>
+		) : null}
+	</ol>
+</nav>

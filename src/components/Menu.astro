@@ -1,0 +1,32 @@
+---
+import { getCanonicalUrlFromPathname, getPathnameFromEntry } from '~/lib/seo';
+import { getCollection } from 'astro:content';
+import { getLangFromUrl } from '~/lib/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const pages = await getCollection('pages', ({ data, slug }) => data.order !== -1 && slug.startsWith(lang));
+pages.sort((a, b) => { return a.data.order - b.data.order });
+const currentPathname = decodeURIComponent(Astro.url.pathname);
+---
+
+<ul
+	class="[ flex gap-m list-none p-0 m-0 font-semibold font-1 ]"
+	role="list"
+>
+	{pages.map(async (page) => {
+		const pageSlug = await getPathnameFromEntry(page);
+		const pageUrl = new URL(getCanonicalUrlFromPathname(pageSlug));
+		return (
+			<li>
+				<a
+					aria-current={decodeURIComponent(pageUrl.pathname) === currentPathname ? 'page' : undefined}
+					class="[ menu__link ] [ text-foreground no-underline ] [ hover:underline aria-current:underline focus:bg-highlight ]"
+					href={pageUrl.pathname}
+				>
+					{page.data.title}
+				</a>
+			</li>
+		);
+	})}
+</ul>
+

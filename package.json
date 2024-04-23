@@ -1,0 +1,57 @@
+{
+	"name": "@schwigri/ukiyo.site",
+	"version": "1.0.0",
+	"description": "Source code for my personal site",
+	"homepage": "https://www.schwigri.com",
+	"bugs": {
+		"url": "https://github.com/schwigri/ukiyo-site/issues"
+	},
+	"license": "ISC",
+	"author": "Griffen Schwiesow",
+	"repository": "github:schwigri/ukiyo-site",
+	"scripts": {
+		"astro": "astro",
+		"build": "run-s build:font build:timestamps build:site",
+		"build:font": "gulp buildFont",
+		"build:site": "astro build",
+		"build:timestamps": "gulp createPostTimestamps",
+		"dev": "astro dev",
+		"gulp": "gulp",
+		"preview": "astro preview",
+		"start": "astro start",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@astrojs/mdx": "^2.3.1",
+		"@astrojs/tailwind": "^5.1.0",
+		"@fontsource/m-plus-1": "^5.0.17",
+		"@fontsource/noto-sans-symbols-2": "^5.0.20",
+		"@fontsource/prompt": "^5.0.14",
+		"@fontsource/work-sans": "^5.0.18",
+		"astro": "^4.6.3",
+		"dayjs": "^1.11.10",
+		"fast-xml-parser": "^4.3.6",
+		"gettext-parser": "^8.0.0",
+		"gulp": "^5.0.0",
+		"markdown-it": "^14.1.0",
+		"sass": "^1.75.0",
+		"subset-font": "^2.3.0",
+		"tailwindcss": "^3.4.3",
+		"uuid": "^9.0.1"
+	},
+	"devDependencies": {
+		"@swc/core": "^1.4.16",
+		"@types/gettext-parser": "^4.0.4",
+		"@types/gulp": "^4.0.17",
+		"@types/markdown-it": "^14.0.1",
+		"@types/subset-font": "^1.4.3",
+		"@types/uuid": "^9.0.8",
+		"nightwatch": "^3.6.0",
+		"npm-run-all": "^4.1.5",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.4.5",
+		"vitest": "^1.5.0"
+	},
+	"private": true,
+	"type": "module"
+}

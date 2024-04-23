@@ -1,0 +1,7 @@
+// Wrapper
+
+.wrapper {
+	@extend .mx-auto;
+
+	max-width: var(--wrapper-width);
+}

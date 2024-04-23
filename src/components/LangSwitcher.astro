@@ -1,0 +1,37 @@
+---
+import { defaultLang, getLangFromUrl, langCodes, langNames, slug } from '~/lib/i18n';
+import type { getCollection } from 'astro:content';
+
+interface Props {
+	readonly translations?: Awaited<ReturnType<typeof getCollection<'pages' | 'posts'>>>[number]['data']['translations'];
+}
+
+const currentLang = getLangFromUrl(Astro.url);
+
+const translatedLinks = Astro.props.translations?.reduce<Record<string, string>>((map, translation) => {
+	const lang = translation.slug.substring(0, 2);
+
+	map[lang] = lang === defaultLang ? `${translation.slug.slice(2)}/` : `/${translation.slug}/`;
+
+	return map;
+}, {});
+---
+
+<ul class="[ list-none p-0 m-0 font--2 ]" role="list">
+	{langCodes.sort().map((lang, index) => (
+		<li class="[ inline-flex items-center ]">
+			<a
+				aria-current={lang === currentLang ? 'true' : undefined}
+				class="[ lang-switcher__link ] [ text-inherit py-2xs no-underline outline-none ] [ hover:underline aria-current:font-semibold focus:bg-highlight ]"
+				href={translatedLinks?.[lang] ?? slug(lang)}
+				lang={lang !== currentLang ? lang : undefined}
+			>
+				{langNames[lang]}
+			</a>
+
+			{index !== langCodes.length - 1 ? (
+				<span aria-hidden="true">&nbsp;/&nbsp;</span>
+			) : null}
+		</li>
+	))}
+</ul>

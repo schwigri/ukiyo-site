@@ -1,0 +1,81 @@
+---
+import { Lang, getLangFromUrl, getJapaneseNumber, getJapaneseYear, getT } from '~/lib/i18n';
+import dayjs from 'dayjs';
+import type { getCollection } from 'astro:content';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+import 'dayjs/locale/de-ch';
+import 'dayjs/locale/en';
+import 'dayjs/locale/ja';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(localizedFormat);
+
+interface Props {
+	readonly post: Awaited<ReturnType<typeof getCollection<'posts'>>>[number];
+}
+
+const { post } = Astro.props;
+
+const locales: Record<Lang, string> = {
+	[Lang.English]: 'en',
+	[Lang.German]: 'de-ch',
+	[Lang.Japanese]: 'ja',
+};
+
+const lang = getLangFromUrl(Astro.url);
+const { Content, remarkPluginFrontmatter } = await post.render();
+const { lastModified, published } = remarkPluginFrontmatter;
+const publishedDate = dayjs(published)
+	.tz('America/Los_Angeles')
+	.locale(locales[lang]);
+let publishedStr = publishedDate.format('LL');
+const lastModifiedDate = dayjs(lastModified)
+	.tz('America/Los_Angeles')
+	.locale(locales[lang]);
+let lastModifiedStr = lastModifiedDate.format('LL');
+
+if (lang === Lang.Japanese) {
+	const japaneseYearMatcher = /(\d+)年(\d+)月(\d+)日/g;
+
+	for (const match of publishedStr.matchAll(japaneseYearMatcher)) {
+		const [, year, month, day] = match;
+		if (year && month && day) {
+			publishedStr = publishedStr
+				.replace(year, getJapaneseYear(year))
+				.replace(month, getJapaneseNumber(month))
+				.replace(day, getJapaneseNumber(day));
+		}
+	}
+
+	for (const match of lastModifiedStr.matchAll(japaneseYearMatcher)) {
+		const [, year, month, day] = match;
+		if (year && month && day) {
+			lastModifiedStr = lastModifiedStr
+				.replace(year, getJapaneseYear(year))
+				.replace(month, getJapaneseNumber(month))
+				.replace(day, getJapaneseNumber(day));
+		}
+	}
+}
+
+const t = getT(lang);
+---
+
+<div>
+	<div class="[ wrapper my-xs-m flex justify-between ]">
+		<time datetime={remarkPluginFrontmatter.published}>{t`Published: %s`.replace('%s', publishedStr)}</time>
+		<!-- {lastModified === published ? (
+			<time>{t`Updated: %s`.replace('%s', lastModifiedStr)}</time>
+		) : null} -->
+	</div>
+
+	<div class="[ post my-xs-m ]">
+		<h1 class="[ wrapper ]">{remarkPluginFrontmatter.title}</h1>
+
+		<Content />
+	</div>
+</div>
+

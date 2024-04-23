@@ -1,0 +1,90 @@
+// Font family
+
+.font-copy {
+	font-family: 'Work Sans', 'M Plus 1', sans-serif;
+}
+
+.font-branding {
+	font-family: Prompt, 'Work Sans', 'M Plus 1', sans-serif;
+}
+
+.font-symbols {
+	font-family: 'Noto Sans Symbols 2', sans-serif;
+	font-weight: 400;
+}
+
+// Font size
+
+.font--2 {
+	font-size: var(--step--2);
+}
+
+.font-0 {
+	font-size: var(--step-0);
+}
+
+.font-1 {
+	font-size: var(--step-1);
+}
+
+// Font weight
+
+.font-semibold,
+.aria-current\:font-semibold[aria-current] {
+	font-weight: 600;
+}
+
+// Line height
+
+.leading-normal {
+	line-height: 1.5;
+}
+
+// List style
+
+.list-none {
+	list-style-type: none;
+}
+
+// Text align
+
+.text-end {
+	text-align: end;
+}
+
+// Text color
+
+.text-inherit {
+	color: inherit;
+}
+
+.text-accent {
+	color: var(--color--accent);
+}
+
+.text-foreground {
+	color: var(--color--foreground);
+}
+
+.text-theme-foreground {
+	color: var(--color--theme-foreground);
+}
+
+// Text decoration
+
+.no-underline {
+	text-decoration-line: none;
+}
+
+.underline,
+.hover\:underline:hover,
+.aria-current\:underline[aria-current] {
+	text-decoration-line: underline;
+}
+
+// Whitespace
+
+.whitespace-pre {
+	white-space: pre;
+}
+

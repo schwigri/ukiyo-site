@@ -1,0 +1,128 @@
+---
+import { getCanonicalUrlFromPathname, getPathnameFromEntry } from '~/lib/seo';
+import { defaultLang, getLangFromUrl, getT, langCodes, slug } from '~/lib/i18n';
+import Branding from '~/components/Branding.astro';
+import LangSwitcher from '~/components/LangSwitcher.astro';
+import Menu from '~/components/Menu.astro';
+import { getCollection } from 'astro:content';
+import '@fontsource/work-sans/latin-400.css';
+import '@fontsource/work-sans/latin-600.css';
+import '@fontsource/prompt/latin-600.css';
+import '@fontsource/m-plus-1/japanese-400.css';
+import '@fontsource/m-plus-1/japanese-600.css';
+import { getEntry } from 'astro:content';
+
+interface Props {
+	readonly description?: string;
+	readonly title?: string;
+	readonly translations?: Awaited<ReturnType<typeof getCollection<'pages' | 'posts'>>>[number]['data']['translations'];
+}
+
+const { description, title, translations } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const homeSlug = slug(lang);
+const isHome = Astro.url.pathname === homeSlug;
+const t = getT(lang);
+
+// @TODO: consider a better way to get privacy page
+// instead of relying on order being -1
+const privacyPages = await getCollection('pages', ({ data, slug }) => data.order === -1 && slug.startsWith(lang));
+const privacyPage = privacyPages[0];
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width" name="viewport">
+		<title>{title}</title>
+		{description ? <meta content={description} name="description"> : null}
+		<style is:global lang="scss">
+			@import url('../styles/fonts.scss');
+		</style>
+		<style is:global lang="scss">
+			@import url('../styles/global.scss');
+		</style>
+		<!-- CANONICAL/ALTERNATES -->
+		{langCodes.map(async (langCode) => {
+			if (langCode === lang) {
+				return (
+					<link href={getCanonicalUrlFromPathname(Astro.url.pathname)} hreflang={langCode} rel="alternate">
+				);
+			}
+
+			const translation = translations?.find((entry) => entry.slug.startsWith(`${langCode}/`));
+			if (translation) {
+				const entry = await getEntry(translation);
+				const translationSlug = await getPathnameFromEntry(entry);
+
+				return (
+					<link href={getCanonicalUrlFromPathname(translationSlug)} hreflang={langCode} rel="alternate">
+				);
+			}
+
+			if (isHome) {
+				return (
+					<link href={getCanonicalUrlFromPathname(slug(langCode))} hreflang={langCode} rel="alternate">
+				);
+			}
+
+			return null;
+		})}
+		<link href={getCanonicalUrlFromPathname(Astro.url.pathname)} rel="canonical">
+	</head>
+	<body class="[ bg-theme text-foreground font-copy leading-normal ]">
+		<a
+			class="[ sr-only ] [ start-0 top-0 bg-highlight text-foreground no-underline border-solid border-3 border-foreground outline-none z-20 ] [ focus:not-sr-only focus:absolute focus:p-2xs ]"
+			href="#main"
+		>
+			{t`Skip to content`}
+		</a>
+
+		<header class="[ bg-background ]">
+			<nav
+				aria-label={t`Languages`}
+				class="[ wrapper ] [ hidden text-end ] [ md:block ]"
+			>
+				<LangSwitcher translations={translations} />
+			</nav>
+
+			<div class="[ header ] [ relative py-xs-m z-10 ]">
+				<nav
+					class="[ wrapper flex justify-between items-center ]"
+				>
+					<Branding href={isHome ? undefined : homeSlug} />
+
+					<Menu />
+				</nav>
+			</div>
+		</header>
+
+		<main class="[ bg-background overflow-auto ]" id="main">
+			<slot />
+		</main>
+
+		<footer class="[ wrapper text-theme-foreground font--2 flex justify-between py-xs-m ]">
+			<div>
+				<span>{t`Copyright © Griffen Schwiesow`}</span><span>&nbsp;/
+					<a
+						class="[ footer__link ] [ text-inherit ]"
+						href="https://github.com/schwigri/ukiyo-site"
+					>{t`Made with %s`.split('%s').map((value) => {
+						if (value === '') {
+							return <span aria-label={t`love`} class="[ font-symbols ]">🎔</span>;
+						}
+
+						return value;
+					})}</a>
+				</span>
+			</div>
+
+			<div class="[ text-end ]">
+				{privacyPage ? (
+					<><a class="[ footer__link ] [ text-inherit ]" href={lang === defaultLang ? `${privacyPage.slug.slice(2)}/` : `/${privacyPage.slug}/`}>{privacyPage.data.title}</a> / </>
+				) : null}<a class="[ footer__link ] [ text-inherit ]" href={`/${lang}.xml`}>{t`Feed`}</a> / <a class="[ footer__link ] [ text-inherit ]" href={`gemini://schwigri.com${homeSlug}`}>Gemini</a>
+			</div>
+		</footer>
+	</body>
+</html

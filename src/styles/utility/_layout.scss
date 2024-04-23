@@ -1,0 +1,102 @@
+// Display
+
+.block {
+	display: block;
+}
+
+.inline {
+	display: inline;
+}
+
+.flex {
+	display: flex;
+}
+
+.inline-flex {
+	display: inline-flex;
+}
+
+.grid {
+	display: grid;
+}
+
+.hidden {
+	display: none;
+}
+
+@media (min-width: 400px) {
+	.sm\:inline {
+		display: inline;
+	}
+}
+
+@media (min-width: 900px) {
+	.md\:block {
+		display: block;
+	}
+
+	.md\:inline {
+		display: inline;
+	}
+
+	.md\:hidden {
+		display: none;
+	}
+}
+
+// Overflow
+
+.overflow-auto {
+	overflow: auto;
+}
+
+// Position
+
+.absolute,
+.focus\:absolute:focus {
+	position: absolute;
+}
+
+.relative {
+	position: relative;
+}
+
+@media (min-width: 900) {
+	.md\:relative {
+		position: relative;
+	}
+}
+
+.sticky {
+	position: sticky;
+}
+
+// Top / Right / Bottom / Left
+.start-0 {
+	inset-inline-start: 0px;
+}
+
+.top-0 {
+	top: 0px;
+}
+
+// Visibility
+
+.invisible {
+	visibility: hidden;
+}
+
+.visible,
+.focus\:visible:focus {
+	visibility: visible;
+}
+
+// Z-index
+
+.z-10 {
+	z-index: 10;
+}
+
+.z-20 {
+	z-index: 20;
+}

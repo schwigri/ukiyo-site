@@ -1,0 +1,11 @@
+---
+import { getLangFromUrl, getT } from '~/lib/i18n';
+import Breadcrumbs from '~/components/Breadcrumbs.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = getT(lang);
+---
+
+<Breadcrumbs class="[ wrapper my-xs-m ]" />
+
+<h2 class="[ wrapper my-xs-m ]">{t`Coming soon`}</h2>

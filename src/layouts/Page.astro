@@ -1,0 +1,19 @@
+---
+import Breadcrumbs from '~/components/Breadcrumbs.astro';
+import type { getCollection } from 'astro:content';
+
+interface Props {
+	readonly page: Awaited<ReturnType<typeof getCollection<'pages'>>>[number];
+}
+
+const { page } = Astro.props;
+const { Content } = await page.render();
+---
+
+<Breadcrumbs class="[ wrapper my-xs-m ]" />
+
+<h1 class="[ wrapper ]">{page.data.title}</h1>
+
+<div class="[ page wrapper ] [ mb-xs-m ]">
+	<Content />
+</div>

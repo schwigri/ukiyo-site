@@ -1,0 +1,12 @@
+.bg-theme {
+	background-color: var(--color--theme);
+}
+
+.bg-background {
+	background-color: var(--color--background);
+}
+
+.bg-highlight,
+.focus\:bg-highlight:focus {
+	background-color: var(--color--highlight);
+}

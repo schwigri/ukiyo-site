@@ -1,0 +1,84 @@
+---
+import { defaultLang, getLangFromUrl, langCodes, getT } from '~/lib/i18n';
+import Home from '~/layouts/Home.astro';
+import Layout from '~/layouts/Layout.astro';
+import Page from '~/layouts/Page.astro';
+import Post from '~/layouts/Post.astro';
+import { getCollection } from 'astro:content';
+import { getPathnameFromEntry } from '~/lib/seo';
+
+const lang = getLangFromUrl(Astro.url);
+
+interface PageProps {
+	readonly page: Awaited<ReturnType<typeof getCollection<'pages'>>>[number];
+}
+
+interface PostProps {
+	readonly post: Awaited<ReturnType<typeof getCollection<'posts'>>>[number];
+}
+
+interface HomeProps {}
+
+export async function getStaticPaths() {
+	const paths: {
+		params: {
+			path: string | undefined,
+		},
+		props?: HomeProps | PageProps | PostProps;
+	}[] = [];
+
+	await Promise.all(langCodes.map(async (langCode) => {
+		// add home page
+		paths.push({
+			params: {
+				path: langCode === defaultLang ? undefined : `/${langCode}/`,
+			},
+		});
+
+		// add pages
+		const pages = await getCollection('pages', ({ slug }) => slug.startsWith(langCode));
+		paths.push(...pages.map((page) => ({
+			params: {
+				path: langCode === defaultLang ? `${page.slug.slice(2)}/` : `/${page.slug}/`,
+			},
+			props: {
+				page,
+			},
+		})));
+
+		// add posts
+		const posts = await getCollection('posts', ({ slug }) => slug.startsWith(langCode));
+		paths.push(...await Promise.all(posts.map(async (post) => {
+			const path = `/${await getPathnameFromEntry(post)}`;
+			return {
+				params: {
+					path,
+				},
+				props: {
+					post,
+				},
+			};
+		})));
+	}));
+
+	return paths;
+}
+
+const seoT = getT(lang, 'SEO');
+
+const { page, post } = Astro.props;
+
+const entry = page ?? post;
+
+const titleTemplate = seoT`%s — Griffen Schwiesow`;
+---
+
+<Layout
+	description={entry?.data.description ?? seoT`I am a designer, front-end developer and PNW native. As an accessibility specialist, I strive to make the web a more beautiful and inclusive space.`}
+	title={entry?.data.title ? titleTemplate.replace('%s', entry.data.title) : seoT`Griffen Schwiesow — Designer, front-end developer and accessibility specialist`}
+	translations={entry?.data.translations}
+>
+	{page ? <Page page={page} />
+		: post ? <Post post={post} />
+		: <Home />}
+</Layout>

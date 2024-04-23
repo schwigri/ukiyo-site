@@ -1,0 +1,5 @@
+.branding__link:focus {
+	box-shadow: 0 0 0 2px var(--color--background), 0 0 0 5px var(--color--foreground);
+	outline: 3px solid var(--color--highlight);
+	outline-offset: 5px;
+}

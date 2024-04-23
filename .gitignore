@@ -1,0 +1,8 @@
+.DS_Store
+.astro
+dist
+logs
+node_modules
+public/symbols.woff
+public/symbols.woff2
+src/content/data/posts.json

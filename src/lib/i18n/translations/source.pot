@@ -1,0 +1,85 @@
+# Original source
+# Copyright © 2024 Griffen Schwiesow
+# This file is distributed under the CC BY-NC-SA 4.0 license.
+# Griffen Schwiesow, 2024
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"POT-Creation-Date: 2024-04-12 10:37-0700\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgctxt "Language code"
+msgid "de"
+msgstr "Deutsch"
+
+msgctxt "Language code"
+msgid "en"
+msgstr "English"
+
+msgctxt "Language code"
+msgid "ja"
+msgstr "日本語"
+
+msgctxt "SEO"
+msgid "%s — Griffen Schwiesow"
+msgstr ""
+
+msgctxt "SEO"
+msgid "Griffen Schwiesow — Designer, front-end developer and language enthusiast"
+msgstr ""
+
+msgctxt "SEO"
+msgid "Griffen Schwiesow — Designer, front-end developer and accessibility specialist"
+msgstr ""
+
+msgid "Skip to content"
+msgstr ""
+
+msgid "Languages"
+msgstr ""
+
+msgid "Griffen"
+msgstr ""
+
+msgid "Griffen Schwiesow"
+msgstr ""
+
+msgid "Coming soon"
+msgstr ""
+
+msgid "No posts yet."
+msgstr ""
+
+msgid "Breadcrumbs"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Feed"
+msgstr ""
+
+msgid "Copyright © Griffen Schwiesow"
+msgstr ""
+
+msgid "Made with %s"
+msgstr ""
+
+msgid "love"
+msgstr ""
+
+msgid "About me"
+msgstr ""
+
+msgctxt "Slug"
+msgid "blog"
+msgstr ""
+
+msgctxt "Remix"
+msgid "Not Found"
+msgstr ""

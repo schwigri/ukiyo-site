@@ -1,0 +1,24 @@
+// Border width
+
+.border-3 {
+	border-width: 3px;
+}
+
+// Border color
+
+.border-foreground {
+	border-color: var(--color--foreground);
+}
+
+// Border style
+
+.border-solid {
+	border-style: solid;
+}
+
+// Outline style
+
+.outline-none {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+}

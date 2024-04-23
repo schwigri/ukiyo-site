@@ -1,0 +1,33 @@
+// Align items
+
+.items-center {
+	align-items: center;
+}
+
+// Grid template columns
+
+.grid-cols-1 {
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 900px) {
+	.md\:grid-cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+// Gap
+
+.gap-3xs {
+	gap: var(--space-3xs);
+}
+
+.gap-m {
+	gap: var(--space-m);
+}
+
+// Justify content
+
+.justify-between {
+	justify-content: space-between;
+}
