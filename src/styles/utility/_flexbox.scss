@@ -1,3 +1,15 @@
+// Flex direction
+
+.flex-col {
+	flex-direction: column;
+}
+
+@media (min-width: 900px) {
+	.md\:flex-row {
+		flex-direction: row;
+	}
+}
+
 // Align items
 
 .items-center {

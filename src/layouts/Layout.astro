@@ -102,7 +102,7 @@ const privacyPage = privacyPages[0];
 			<slot />
 		</main>
 
-		<footer class="[ wrapper text-theme-foreground font--2 flex justify-between py-xs-m ]">
+		<footer class="[ wrapper text-theme-foreground font--2 flex flex-col gap-3xs justify-between py-xs-m ] [ md:flex-row ]">
 			<div>
 				<span>{t`Copyright © Griffen Schwiesow`}</span><span>&nbsp;/
 					<a
@@ -118,7 +118,7 @@ const privacyPage = privacyPages[0];
 				</span>
 			</div>
 
-			<div class="[ text-end ]">
+			<div>
 				{privacyPage ? (
 					<><a class="[ footer__link ] [ text-inherit ]" href={lang === defaultLang ? `${privacyPage.slug.slice(2)}/` : `/${privacyPage.slug}/`}>{privacyPage.data.title}</a> / </>
 				) : null}<a class="[ footer__link ] [ text-inherit ]" href={`/${lang}.xml`}>{t`Feed`}</a> / <a class="[ footer__link ] [ text-inherit ]" href={`gemini://schwigri.com${homeSlug}`}>Gemini</a>
