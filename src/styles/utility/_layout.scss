@@ -61,14 +61,14 @@
 	position: relative;
 }
 
+.sticky {
+	position: sticky;
+}
+
 @media (min-width: 900) {
 	.md\:relative {
 		position: relative;
 	}
-}
-
-.sticky {
-	position: sticky;
 }
 
 // Top / Right / Bottom / Left

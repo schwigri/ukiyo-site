@@ -3,3 +3,73 @@
 	outline: 3px solid var(--color--foreground);
 	outline-offset: var(--space-3xs);
 }
+
+.menu\:interactive {
+	background-color: var(--color--background);
+	box-shadow: 0 0 1px var(--color--shadow);
+	box-sizing: border-box;
+	display: block;
+	left: 0;
+	padding-inline: calc((100% - var(--wrapper-width)) / 2);
+	position: absolute;
+	top: 0;
+	transform: translate3d(0, -100%, 0);
+	transition: top 0.3s, transform 0.3s, visibility 0.3s;
+	visibility: hidden;
+	width: 100%;
+	z-index: 10;
+}
+
+.menu\:interactive::before {
+	background-color: var(--color--background);
+	content: '';
+	height: 1px;
+	left: 0;
+	position: absolute;
+	top: -1px;
+	width: 100%;
+	z-index: 10;
+}
+
+.menu\:interactive .menu__list {
+	flex-direction: column;
+	gap: 0;
+}
+
+.menu\:interactive .menu__link {
+	align-items: center;
+	display: flex;
+	height: 40px;
+	position: relative;
+	z-index: 20;
+}
+
+.menu-button__icon {
+	height: auto;
+	transform: rotate(0deg);
+	transition: transform 0.3s;
+	width: 28px;
+}
+
+.menu-button {
+	height: 40px;
+	width: 40px;
+}
+
+
+.menu-button:focus {
+	outline: none;
+}
+
+.menu-button:focus::before {
+	background-color: var(--color--highlight);
+	content: '';
+	height: calc(28px + 2 * var(--space-3xs));
+	outline: 3px solid var(--color--foreground);
+	position: absolute;
+	right: calc(-1 * var(--space-3xs));
+	top: 50%;
+	transform: translate3d(0, -50%, 0);
+	width: calc(28px + 2 * var(--space-3xs));
+}
+

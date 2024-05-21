@@ -1,0 +1,12 @@
+.menu-button[aria-expanded=true] .menu-button__icon {
+	transform: rotate(-90deg);
+}
+
+@media (max-width: 899px) {
+	.menu[data-open=true] {
+		top: 100%;
+		transform: translate3d(0, 0, 0);
+		visibility: visible;
+	}
+}
+

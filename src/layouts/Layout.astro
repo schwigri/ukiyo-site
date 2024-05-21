@@ -82,7 +82,8 @@ const privacyPage = privacyPages[0];
 		<header class="[ bg-background ]">
 			<nav
 				aria-label={t`Languages`}
-				class="[ wrapper ] [ hidden text-end ] [ md:block ]"
+				class="[ wrapper ] [ text-end ] [ md:block ]"
+				id="top-bar"
 			>
 				<LangSwitcher translations={translations} />
 			</nav>
@@ -93,7 +94,7 @@ const privacyPage = privacyPages[0];
 				>
 					<Branding href={isHome ? undefined : homeSlug} />
 
-					<Menu />
+					<Menu translations={translations} />
 				</nav>
 			</div>
 		</header>

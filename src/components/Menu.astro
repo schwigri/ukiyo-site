@@ -1,32 +1,144 @@
 ---
 import { getCanonicalUrlFromPathname, getPathnameFromEntry } from '~/lib/seo';
+import LangSwitcher from './LangSwitcher.astro';
 import { getCollection } from 'astro:content';
-import { getLangFromUrl } from '~/lib/i18n';
+import { getLangFromUrl, getT } from '~/lib/i18n';
 
+interface Props {
+	readonly translations?: Awaited<ReturnType<typeof getCollection<'pages' | 'posts'>>>[number]['data']['translations'];
+}
+
+const { translations } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const pages = await getCollection('pages', ({ data, slug }) => data.order !== -1 && slug.startsWith(lang));
 pages.sort((a, b) => { return a.data.order - b.data.order });
 const currentPathname = decodeURIComponent(Astro.url.pathname);
+const t = getT(lang);
 ---
 
-<ul
-	class="[ flex gap-m list-none p-0 m-0 font-semibold font-1 ]"
-	role="list"
+<button
+	aria-controls="menu"
+	aria-label={t`Open menu`}
+	class="[ menu-button ] [ appearance-none cursor-pointer hidden flex items-center justify-end p-0 m-0 bg-transparent border-0 relative z-20 ] [ md:hidden ]"
+	data-close-string={t`Close menu`}
+	data-open-string={t`Open menu`}
+	id="menu-button"
 >
-	{pages.map(async (page) => {
-		const pageSlug = await getPathnameFromEntry(page);
-		const pageUrl = new URL(getCanonicalUrlFromPathname(pageSlug));
-		return (
-			<li>
-				<a
-					aria-current={decodeURIComponent(pageUrl.pathname) === currentPathname ? 'page' : undefined}
-					class="[ menu__link ] [ text-foreground no-underline ] [ hover:underline aria-current:underline focus:bg-highlight ]"
-					href={pageUrl.pathname}
-				>
-					{page.data.title}
-				</a>
-			</li>
-		);
-	})}
-</ul>
+	<svg
+		aria-hidden="true"
+		class="[ menu-button__icon ] [ text-foreground fill-current ]"
+		height="24px"
+		viewBox="0 0 24 24"
+		width="24px"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path d="M6 12c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm9 0c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm9 0c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z" />
+	</svg>
+</button>
+
+<div
+	class="[ menu ] [ md:block md:relative ]"
+	id="menu"
+>
+	<ul
+		class="[ menu__list ] [ flex gap-m list-none p-0 m-0 font-semibold font-1 ]"
+		role="list"
+	>
+		{pages.map(async (page) => {
+			const pageSlug = await getPathnameFromEntry(page);
+			const pageUrl = new URL(getCanonicalUrlFromPathname(pageSlug));
+			return (
+				<li>
+					<a
+						aria-current={decodeURIComponent(pageUrl.pathname) === currentPathname ? 'page' : undefined}
+						class="[ menu__link ] [ text-foreground no-underline ] [ hover:underline aria-current:underline focus:bg-highlight ]"
+						href={pageUrl.pathname}
+					>
+						{page.data.title}
+					</a>
+				</li>
+			);
+		})}
+	</ul>
+
+	<div class="[ hidden ]" id="menu-translations">
+		<LangSwitcher translations={translations} />
+	</div>
+</div>
+
+<script>
+(() => {
+	const menu = document.getElementById('menu');
+	const menuButton = document.getElementById('menu-button');
+	const topBar = document.getElementById('top-bar');
+	const menuTranslations = document.getElementById('menu-translations');
+	const interactiveMenuQuery = window.matchMedia('(min-width: 900px)');
+	const openMenuString = menuButton?.getAttribute('data-open-string');
+	const closeMenuString = menuButton?.getAttribute('data-close-string');
+
+	function openMenu() {
+		if (!menu || !menuButton) return;
+
+		console.log('opening menu');
+		menu.setAttribute('data-open', 'true');
+		menuButton.setAttribute('aria-expanded', 'true');
+		if (closeMenuString) {
+			menuButton.setAttribute('aria-label', closeMenuString);
+		}
+	}
+
+	function closeMenu() {
+		if (!menu || !menuButton) return;
+
+		console.log('closing menu');
+		menu.removeAttribute('data-open');
+		menuButton.removeAttribute('aria-expanded');
+		if (openMenuString) {
+			menuButton.setAttribute('aria-label', openMenuString);
+		}
+	}
+
+	menuButton?.addEventListener('click', () => {
+		if (interactiveMenuQuery.matches) return;
+		if (!menu) return;
+
+		if (menu.getAttribute('data-open') === 'true') {
+			closeMenu();
+		} else {
+			openMenu();
+		}
+	});
+
+	function makeMenuInteractive() {
+		console.log('making menu interactive');
+		menu?.classList.add('hidden');
+		menu?.classList.add('menu:interactive');
+		menuButton?.classList.remove('hidden');
+		topBar?.classList.add('hidden');
+		menuTranslations?.classList.remove('hidden');
+		closeMenu();
+	}
+
+	function makeMenuNonInteractive() {
+		console.log('making menu non-interactive');
+		menu?.classList.remove('hidden');
+		menu?.classList.remove('menu:interactive');
+		menuButton?.classList.add('hidden');
+		topBar?.classList.remove('hidden');
+		menuTranslations?.classList.add('hidden');
+		closeMenu();
+	}
+
+	function setUpMenu(ev: MediaQueryList | MediaQueryListEvent) {
+		if (ev.matches) {
+			makeMenuNonInteractive();
+		} else {
+			makeMenuInteractive();
+		}
+	}
+
+	setUpMenu(interactiveMenuQuery);
+	interactiveMenuQuery.addEventListener('change', setUpMenu);
+})();
+</script>
 
