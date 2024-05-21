@@ -21,7 +21,7 @@ const t = getT(lang);
 
 <script>
 (async () => {
-	const apiUrl = new URL('http://ws.audioscrobbler.com/2.0/');
+	const apiUrl = new URL('https://ws.audioscrobbler.com/2.0/');
 	apiUrl.searchParams.append('method', 'user.getrecenttracks');
 	apiUrl.searchParams.append('limit', '1');
 	apiUrl.searchParams.append('user', 'schwigri');
