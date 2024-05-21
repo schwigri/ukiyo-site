@@ -52,6 +52,12 @@ msgstr "グリフィン"
 msgid "Griffen Schwiesow"
 msgstr "グリフィン・シュヴィーゾー"
 
+msgid "Open menu"
+msgstr "メニューを開く"
+
+msgid "Close menu"
+msgstr "メニューを閉じる"
+
 msgid "Recently listened to"
 msgstr "最近聞いた曲"
 

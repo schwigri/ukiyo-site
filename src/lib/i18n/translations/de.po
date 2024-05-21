@@ -52,6 +52,12 @@ msgstr "Griffen"
 msgid "Griffen Schwiesow"
 msgstr "Griffen Schwiesow"
 
+msgid "Open menu"
+msgstr "Menü öffnen"
+
+msgid "Close menu"
+msgstr "Menü schliessen"
+
 msgid "Recently listened to"
 msgstr "Kürzlich gehört"
 

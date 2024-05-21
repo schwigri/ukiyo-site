@@ -79,7 +79,6 @@ const t = getT(lang);
 	function openMenu() {
 		if (!menu || !menuButton) return;
 
-		console.log('opening menu');
 		menu.setAttribute('data-open', 'true');
 		menuButton.setAttribute('aria-expanded', 'true');
 		if (closeMenuString) {
@@ -90,7 +89,6 @@ const t = getT(lang);
 	function closeMenu() {
 		if (!menu || !menuButton) return;
 
-		console.log('closing menu');
 		menu.removeAttribute('data-open');
 		menuButton.removeAttribute('aria-expanded');
 		if (openMenuString) {
@@ -110,7 +108,6 @@ const t = getT(lang);
 	});
 
 	function makeMenuInteractive() {
-		console.log('making menu interactive');
 		menu?.classList.add('hidden');
 		menu?.classList.add('menu:interactive');
 		menuButton?.classList.remove('hidden');
@@ -120,7 +117,6 @@ const t = getT(lang);
 	}
 
 	function makeMenuNonInteractive() {
-		console.log('making menu non-interactive');
 		menu?.classList.remove('hidden');
 		menu?.classList.remove('menu:interactive');
 		menuButton?.classList.add('hidden');

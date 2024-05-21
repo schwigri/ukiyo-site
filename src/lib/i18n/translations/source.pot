@@ -46,6 +46,12 @@ msgstr ""
 msgid "Griffen Schwiesow"
 msgstr ""
 
+msgid "Open menu"
+msgstr ""
+
+msgid "Close menu"
+msgstr ""
+
 msgid "Recently listened to"
 msgstr ""
 
