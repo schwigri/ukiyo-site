@@ -46,6 +46,12 @@ msgstr ""
 msgid "Griffen Schwiesow"
 msgstr ""
 
+msgid "Recently listened to"
+msgstr ""
+
+msgid "“%t” — %a"
+msgstr ""
+
 msgid "Coming soon"
 msgstr ""
 

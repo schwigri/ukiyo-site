@@ -52,6 +52,12 @@ msgstr "グリフィン"
 msgid "Griffen Schwiesow"
 msgstr "グリフィン・シュヴィーゾー"
 
+msgid "Recently listened to"
+msgstr "最近聞いた曲"
+
+msgid "“%t” — %a"
+msgstr "%a「%t」"
+
 msgid "Coming soon"
 msgstr "近日公開"
 

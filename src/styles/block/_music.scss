@@ -1,0 +1,9 @@
+.music {
+	opacity: 1;
+	transition: opacity 0.3s;
+}
+
+.music.invisible {
+	opacity: 0;
+}
+

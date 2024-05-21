@@ -4,6 +4,7 @@ import { defaultLang, getLangFromUrl, getT, langCodes, slug } from '~/lib/i18n';
 import Branding from '~/components/Branding.astro';
 import LangSwitcher from '~/components/LangSwitcher.astro';
 import Menu from '~/components/Menu.astro';
+import Music from '~/components/Music.astro';
 import { getCollection } from 'astro:content';
 import '@fontsource/work-sans/latin-400.css';
 import '@fontsource/work-sans/latin-600.css';
@@ -82,9 +83,11 @@ const privacyPage = privacyPages[0];
 		<header class="[ bg-background ]">
 			<nav
 				aria-label={t`Languages`}
-				class="[ wrapper ] [ text-end ] [ md:block ]"
+				class="[ wrapper items-center justify-between ] [ md:flex ]"
 				id="top-bar"
 			>
+				<Music />
+
 				<LangSwitcher translations={translations} />
 			</nav>
 

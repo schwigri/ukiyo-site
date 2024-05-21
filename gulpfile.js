@@ -27,6 +27,7 @@ async function* walk(dir) {
 const symbolsList = [
 	'🎔',
 	'🏠',
+	'🎜',
 ];
 const symbols = symbolsList.join('');
 

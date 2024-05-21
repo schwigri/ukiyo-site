@@ -1,0 +1,60 @@
+---
+import { getLangFromUrl, getT } from '~/lib/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = getT(lang);
+---
+
+<div
+	class="[ music ] [ invisible font--2 ]"
+	data-template={t`“%t” — %a`}
+	id="music"
+>
+	<span
+		aria-label={t`Recently listened to`}
+		class="[ font-symbols ]"
+	>
+		🎜
+	</span>
+	<span class={lang !== 'ja' ? 'italic' : ''} id="music-text"></span>
+</div>
+
+<script>
+(async () => {
+	const apiUrl = new URL('http://ws.audioscrobbler.com/2.0/');
+	apiUrl.searchParams.append('method', 'user.getrecenttracks');
+	apiUrl.searchParams.append('limit', '1');
+	apiUrl.searchParams.append('user', 'schwigri');
+	apiUrl.searchParams.append('api_key', import.meta.env.PUBLIC_LASTFM_API_KEY);
+	apiUrl.searchParams.append('format', 'json');
+
+	const music = document.getElementById('music');
+	const templateString = music?.getAttribute('data-template');
+	const musicText = document.getElementById('music-text');
+
+	async function getLatestScrobble() {
+		try {
+			const result = await fetch(apiUrl);
+			if (!result.ok) return;
+
+			const data = await result.json();
+			const artistName = data.recenttracks.track[0].artist['#text'];
+			const trackName = data.recenttracks.track[0].name;
+
+			if (!artistName || !trackName) return;
+
+			return templateString.replace('%t', trackName).replace('%a', artistName);
+		} catch (_err) {
+			return;
+		}
+	}
+
+	const latestScrobble = await getLatestScrobble();
+
+	if (latestScrobble && musicText) {
+		musicText.innerText = latestScrobble;
+		music.classList.remove('invisible');
+	}
+})();
+</script>
+

@@ -31,6 +31,10 @@
 }
 
 @media (min-width: 900px) {
+	.md\:flex {
+		display: flex;
+	}
+
 	.md\:block {
 		display: block;
 	}
