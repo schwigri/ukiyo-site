@@ -33,6 +33,11 @@
 	font-style: italic;
 }
 
+.italic:lang(ja),
+.italic :lang(ja) {
+	font-style: normal;
+}
+
 // Font weight
 
 .font-semibold,

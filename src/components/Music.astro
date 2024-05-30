@@ -38,12 +38,21 @@ const t = getT(lang);
 			if (!result.ok) return;
 
 			const data = await result.json();
-			const artistName = data.recenttracks.track[0].artist['#text'];
-			const trackName = data.recenttracks.track[0].name;
+			let artistName = data.recenttracks.track[0].artist['#text'];
+			let trackName = data.recenttracks.track[0].name;
 
 			if (!artistName || !trackName) return;
 
-			return templateString.replace('%t', trackName).replace('%a', artistName);
+			if (artistName.match(/[\u3400-\u9FBF]/)) {
+				artistName = `<span lang="ja">${artistName}</span>`;
+			}
+
+			if (trackName.match(/[\u3400-\u9FBF]/)) {
+				trackName = `<span lang="ja">${trackName}</span>`;
+			}
+
+
+			return templateString?.replace('%t', trackName).replace('%a', artistName);
 		} catch (_err) {
 			return;
 		}
@@ -52,8 +61,8 @@ const t = getT(lang);
 	const latestScrobble = await getLatestScrobble();
 
 	if (latestScrobble && musicText) {
-		musicText.innerText = latestScrobble;
-		music.classList.remove('invisible');
+		musicText.innerHTML = latestScrobble;
+		music?.classList.remove('invisible');
 	}
 })();
 </script>
