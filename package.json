@@ -12,12 +12,19 @@
   "license": "BSD-3-Clause",
   "author": "Griffen Schwiesow <gs@griffen.dev>",
   "scripts": {
+    "build": "astro build",
+    "dev": "astro dev",
     "format": "oxlint --fix && oxfmt",
     "lint": "oxlint && oxfmt --list-different",
-    "prepare": "npm run lint"
+    "prepare": "npm run lint",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.16.6"
   },
   "devDependencies": {
     "oxfmt": "^0.21.0",
     "oxlint": "^1.36.0"
-  }
+  },
+  "private": true
 }
