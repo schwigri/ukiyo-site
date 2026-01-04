@@ -1,6 +1,6 @@
 # UkiyoSite
 
-> **<span lang="ja">浮世</span> u·ki·yo** /ɯ̟ᵝkʲijo̞/ *noun* a state of mind
+> **<span lang="ja">浮世</span> u·ki·yo** /ɯ̟ᵝkʲijo̞/ _noun_ a state of mind
 > emphasizing living in the moment, detached from the difficulties of life
 
 The source code for my personal blog.
