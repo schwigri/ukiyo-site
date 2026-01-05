@@ -1,0 +1,69 @@
+/* Establish variables */
+:root {
+  /* Colors */
+  --background-base: oklch(0.95 0.025 75);
+  --background: oklch(from var(--background-base) l c h);
+  --foreground: oklch(from var(--background-base) 0.0125 c h);
+
+  /* Sizing */
+  --scale: 1;
+  --border-radius-multiplier: 1;
+  --px-2: 0.125rem;
+  --px-4: 0.25rem;
+  --px-8: 0.5rem;
+  --px-10: 0.625rem;
+  --px-12: 0.75rem;
+  --px-14: 0.875rem;
+  --px-16: 1rem;
+  --px-18: 1.125rem;
+  --px-20: 1.25rem;
+  --px-24: 1.5rem;
+  --px-28: 1.75rem;
+  --px-32: 2rem;
+  --px-48: 3rem;
+  --px-192: 12rem;
+
+  --text-small: max(var(--px-16), calc(0.97vw * var(--scale)));
+  --text-base: max(var(--px-18), calc(1.25vw * var(--scale)));
+  --text-medium: max(var(--px-20), calc(1.36vw * var(--scale)));
+  --text-x-large: max(var(--px-32), calc(2.22vw * var(--scale)));
+
+  --spacing-small: max(var(--px-28), 1.94vw);
+  --spacing-medium: max(var(--px-32), calc(2.08vw * var(--scale)));
+  --spacing-large: max(var(--px-192), 13.3vw);
+
+  --horizontal-container: 62vh;
+
+  /* Fonts */
+  --font-branding: "Reddit Mono", sans-serif;
+  --font-copy: "Reddit Sans", sans-serif;
+}
+
+@supports (corner-shape: squircle) {
+  :root {
+    --border-radius-multiplier: 2;
+  }
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(from var(--background-base) 0.0125 c h);
+    --foreground: oklch(from var(--background-base) l c h);
+  }
+}
+
+/* Update headings */
+h1,
+h2,
+h3 {
+  font-family: var(--font-branding);
+  font-weight: 200;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@media (min-width: 992px) {
+  html {
+    overscroll-behavior-x: contain;
+  }
+}

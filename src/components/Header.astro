@@ -1,0 +1,59 @@
+---
+import Branding from "./Branding.astro";
+
+interface Props {
+  isHome?: boolean;
+  class?: string;
+}
+
+const { isHome = false } = Astro.props;
+---
+
+<header
+  class:list={[
+    "header",
+    "flex justify-between",
+    "pb-medium pi-small",
+    "fixed top-0 w-full",
+  ]}
+  id="header"
+>
+  {
+    isHome ? (
+      <h1
+        class:list={["branding", "text-small font-branding uppercase"]}
+        slot="wrapper"
+      >
+        <Branding />
+      </h1>
+    ) : (
+      <a
+        class:list={[
+          "branding branding-link",
+          "fg-theme text-small font-branding uppercase no-underline",
+        ]}
+        href="/"
+      >
+        <Branding />
+      </a>
+    )
+  }
+
+  <nav
+    aria-label="Languages"
+    class:list={["langs", "font-branding text-small"]}
+  >
+    <ul class:list={["langs-list", "flex"]}>
+      <li class:list={["langs-list-item"]}>
+        <a
+          class:list={["langs-link", "fg-theme no-underline"]}
+          aria-current="true"
+          aria-label="English"
+          href="/">EN</a>
+      </li>
+      <!--<li class:list={["langs-list-item"]}>
+<a class:list={["langs-link", "fg-theme no-underline"]} aria-label="Français" href="/fr/" lang="fr">FR</a>
+</li>-->
+    </ul>
+  </nav>
+</header>

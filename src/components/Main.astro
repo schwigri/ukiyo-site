@@ -1,0 +1,15 @@
+---
+interface Props {
+  isHome?: boolean;
+}
+
+const { isHome = false } = Astro.props;
+---
+
+<div class:list={[isHome ? "horizontal" : ""]}>
+  <div class:list={[isHome ? "horizontal-content pi-small flex col" : ""]}>
+    <main class:list={["main"]} id="main">
+      <slot />
+    </main>
+  </div>
+</div>

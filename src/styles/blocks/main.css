@@ -1,0 +1,34 @@
+.horizontal-section {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.main {
+  width: 100%;
+}
+
+.horizontal-content {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.horizontal {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .horizontal-section {
+    height: var(--horizontal-container);
+  }
+
+  .main {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+  }
+
+  .horizontal-content {
+    padding-inline: 0;
+  }
+}

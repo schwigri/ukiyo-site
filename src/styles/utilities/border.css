@@ -1,0 +1,4 @@
+.round {
+  border-radius: calc(var(--px-16) * var(--border-radius-modifier));
+  corner-shape: squircle;
+}

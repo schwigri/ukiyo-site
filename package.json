@@ -11,20 +11,32 @@
   },
   "license": "BSD-3-Clause",
   "author": "Griffen Schwiesow <gs@griffen.dev>",
+  "type": "module",
   "scripts": {
     "build": "astro build",
     "dev": "astro dev",
-    "format": "oxlint --fix && oxfmt",
-    "lint": "oxlint && oxfmt --list-different",
-    "prepare": "npm run lint",
+    "format": "oxlint --fix && eslint --cache --fix . && prettier --cache --write .",
+    "lint": "oxlint && eslint --cache . && prettier --cache --check .",
+    "prepare": "npm run lint && npm run build",
     "preview": "astro preview"
   },
   "dependencies": {
+    "@fontsource/atkinson-hyperlegible-mono": "^5.2.10",
+    "@fontsource/reddit-mono": "^5.2.8",
+    "@fontsource/reddit-sans": "^5.2.7",
+    "@fontsource/syne-mono": "^5.2.7",
     "astro": "^5.16.6"
   },
   "devDependencies": {
-    "oxfmt": "^0.21.0",
-    "oxlint": "^1.36.0"
-  },
-  "private": true
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-oxlint": "^1.36.0",
+    "jiti": "^2.6.1",
+    "oxlint": "^1.36.0",
+    "prettier": "3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript-eslint": "^8.51.0"
+  }
 }
