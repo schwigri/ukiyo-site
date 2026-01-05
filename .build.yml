@@ -1,0 +1,16 @@
+{
+  "$schema": "https://www.schemastore.org/sourcehut-build-0.65.0.json",
+  "image": "alpine/latest",
+  "oauth": "pages.sr.ht/PAGES:RW",
+  "packages": ["hut", "nodejs", "npm"],
+  "submitter":
+    { "git.sr.ht": { "allow-refs": ["refs/heads/main"], "enabled": true } },
+  "tasks":
+    [
+      { "build": "cd ukiyo-site \n npm ci" },
+      { "package": "cd ukiyo-site \n tar -C dist -cvz . > site.tar.gz" },
+      {
+        "upload": "cd ukiyo-site \n hut pages publish -d www.griffen.dev site.tar.gz",
+      },
+    ],
+}
