@@ -1,6 +1,12 @@
 .social-link {
+  &:focus,
   &:hover {
-    font-weight: 400;
+    background-color: var(--foreground);
+    color: var(--background);
+
+    & span {
+      text-decoration: underline;
+    }
   }
 
   &::before {

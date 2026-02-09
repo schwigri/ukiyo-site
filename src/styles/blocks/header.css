@@ -9,9 +9,18 @@
     padding-inline-start: 0.25em;
   }
 
-  &:hover,
   &[aria-current="true"] {
     font-weight: 400;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: var(--foreground);
+    color: var(--background);
+
+    & span {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -74,6 +83,10 @@
 .scrolled .langs::after,
 .scrolled .branding::after {
   box-shadow: 0 4px 8px oklch(from var(--foreground) l c h / 0.1);
+}
+
+.header {
+  z-index: 1;
 }
 
 /*

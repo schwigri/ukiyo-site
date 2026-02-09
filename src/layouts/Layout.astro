@@ -17,7 +17,7 @@ const { description, isHome = false, title } = Astro.props;
 const canonical = new URL(Astro.url.pathname, "https://www.griffen.dev");
 ---
 
-<html lang="en">
+<html lang={Astro.currentLocale}>
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
