@@ -28,6 +28,8 @@ const canonical = new URL(Astro.url.pathname, "https://www.griffen.dev");
     />
     <script src="@/scripts/griffen"></script>
     <link href={canonical.toString()} rel="canonical" />
+    <link href="https://www.griffen.dev/" hreflang="en" />
+    <link href="https://www.griffen.dev/fr/" hreflang="fr" />
   </head>
   <body class:list={["bg-theme fg-theme", "font-copy text-base"]}>
     <div class="overlay"></div>

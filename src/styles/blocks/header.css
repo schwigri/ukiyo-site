@@ -13,7 +13,7 @@
     font-weight: 400;
   }
 
-  &:focus,
+  &:focus-visible,
   &:hover {
     background-color: var(--foreground);
     color: var(--background);
@@ -46,7 +46,7 @@
   }
 }
 
-.branding[gref]:hover {
+.branding[href]:hover {
   font-weight: 400;
 
   .branding-end::after {
@@ -68,7 +68,7 @@
     border-radius: calc(var(--px-16) * var(--border-radius-multiplier));
     box-shadow: 0 4px 8px oklch(from var(--foreground) l c h / 0);
     content: "";
-    corner-radius: squircle;
+    corner-shape: squircle;
     height: 100%;
     left: -0.75em;
     padding: 0.5em 0.75em;

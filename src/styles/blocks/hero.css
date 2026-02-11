@@ -1,5 +1,5 @@
 .social-link {
-  &:focus,
+  &:focus-visible,
   &:hover {
     background-color: var(--foreground);
     color: var(--background);

@@ -1,3 +1,7 @@
+type Griffen = {
+  blurContent(): void;
+};
+
 export const griffen: Griffen = {
   blurContent,
 };
@@ -45,7 +49,7 @@ ready(function () {
   if (header && scrollThreshold) {
     const globalObserver = new IntersectionObserver(
       function (entries) {
-        if (!entries[0].isIntersecting) {
+        if (!entries?.[0]?.isIntersecting) {
           getDocument().body.classList.add("scrolled");
         } else {
           getDocument().body.classList.remove("scrolled");
@@ -58,6 +62,8 @@ ready(function () {
     );
 
     globalObserver.observe(scrollThreshold);
-    console.log(globalObserver);
+    if (import.meta.env.DEV) {
+      console.debug(globalObserver);
+    }
   }
 });

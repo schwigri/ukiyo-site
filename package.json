@@ -16,18 +16,19 @@
     "build": "astro build",
     "dev": "astro dev",
     "format": "oxlint --fix && eslint --cache --fix . && prettier --cache --write .",
-    "lint": "oxlint && eslint --cache . && prettier --cache --check .",
-    "prepare": "npm run lint && npm run build",
-    "preview": "astro preview"
+    "lint": "npm run typecheck && oxlint && eslint --cache . && prettier --cache --check .",
+    "prepare": "astro sync",
+    "preview": "astro preview",
+    "serve": "astro serve",
+    "typecheck": "astro check && npx tsc --noEmit"
   },
   "dependencies": {
-    "@fontsource/atkinson-hyperlegible-mono": "^5.2.10",
     "@fontsource/reddit-mono": "^5.2.8",
     "@fontsource/reddit-sans": "^5.2.7",
-    "@fontsource/syne-mono": "^5.2.7",
     "astro": "^5.16.6"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@eslint/js": "^9.39.2",
     "eslint": "^9.39.2",
     "eslint-plugin-astro": "^1.5.0",
