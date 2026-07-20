@@ -15,29 +15,25 @@
   "scripts": {
     "build": "astro build",
     "dev": "astro dev",
-    "format": "oxlint --fix && eslint --cache --fix . && prettier --cache --write .",
-    "lint": "npm run typecheck && oxlint && eslint --cache . && prettier --cache --check .",
-    "prepare": "astro sync",
+    "format": "oxlint --fix . && oxfmt .",
+    "lint": "oxlint . && oxfmt --check .",
+    "prepare": "astro sync && husky",
     "preview": "astro preview",
     "serve": "astro serve",
     "typecheck": "astro check && npx tsc --noEmit"
   },
   "dependencies": {
-    "@fontsource/reddit-mono": "^5.2.8",
-    "@fontsource/reddit-sans": "^5.2.7",
-    "astro": "^5.16.6"
+    "astro": "^7.1.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@eslint/js": "^9.39.2",
-    "eslint": "^9.39.2",
-    "eslint-plugin-astro": "^1.5.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-oxlint": "^1.36.0",
-    "jiti": "^2.6.1",
-    "oxlint": "^1.36.0",
-    "prettier": "3.8.1",
-    "prettier-plugin-astro": "^0.14.1",
-    "typescript-eslint": "^8.51.0"
+    "@astrojs/check": "^0.9.9",
+    "husky": "^9.1.7",
+    "oxfmt": "^0.59.0",
+    "oxlint": "^1.74.0",
+    "typescript": "^6.0.3",
+    "varlock": "^1.11.0"
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }

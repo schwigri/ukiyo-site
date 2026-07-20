@@ -3,14 +3,11 @@
   "image": "alpine/latest",
   "oauth": "pages.sr.ht/PAGES:RW",
   "packages": ["hut", "nodejs", "npm"],
-  "submitter":
-    { "git.sr.ht": { "allow-refs": ["refs/heads/main"], "enabled": true } },
+  "submitter": { "git.sr.ht": { "allow-refs": ["refs/heads/main"], "enabled": true } },
   "tasks":
     [
-      { "build": "cd ukiyo-site \n npm ci \n npm run lint \n npm run build" },
+      { "build": "cd ukiyo-site \n npm ci \n npm run lint \n npm run typecheck \n npm run build" },
       { "package": "cd ukiyo-site \n tar -C dist -cvz . > site.tar.gz" },
-      {
-        "upload": "cd ukiyo-site \n hut pages publish -d www.griffen.dev site.tar.gz",
-      },
+      { "upload": "cd ukiyo-site \n hut pages publish -d www.griffen.dev site.tar.gz" },
     ],
 }

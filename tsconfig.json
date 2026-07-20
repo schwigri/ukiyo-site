@@ -1,13 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/layouts/*": ["src/layouts/*"],
-      "@/scripts/*": ["src/scripts/*"],
-      "@/styles/*": ["src/styles/*"]
-    }
-  },
-  "extends": "astro/tsconfigs/strictest"
+  "exclude": ["dist"],
+  "extends": "astro/tsconfigs/strictest",
+  "include": [".astro/types.d.ts", "**/*"]
 }

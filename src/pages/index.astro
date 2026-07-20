@@ -1,34 +1,15 @@
 ---
-import Hero from "@/components/Hero.astro";
-import Layout from "@/layouts/Layout.astro";
-import Posts from "@/components/Posts.astro";
+console.log("Hi");
 ---
 
-<Layout
-  description="I'm a designer and developer passionate about accessibility, internationalization and making the web a more beautiful space."
-  isHome={true}
-  title="Griffen Schwiesow — Designer, front-end developer and accessibility specialist"
->
-  <Hero>
-    <h2 class:list={["text-x-large"]}>Hi, I'm Griffen!</h2>
-    <p>
-      A designer and developer passionate about accessibility,
-      internationalization and making the web a more beautiful space.
-    </p>
-    <ul
-      aria-label="Social media"
-      class:list={["font-branding uppercase text-medium"]}
-    >
-      <li>
-        <a
-          class:list={["social-link", "fg-theme no-underline"]}
-          href="https://sr.ht/~schwigri/"
-        >
-          <span>SourceHut</span>
-        </a>
-      </li>
-    </ul>
-  </Hero>
+<html lang="en">
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
 
-  <Posts />
-</Layout>
+<style>
+  h1 {
+    color: orange;
+  }
+</style>
