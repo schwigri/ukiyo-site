@@ -1,0 +1,13 @@
+---
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, toDisplayName } from "@/i18n";
+---
+
+<ul>
+  {SUPPORTED_LOCALES.map((locale) => (
+    <li lang={toCode(locale)}>
+      <a href={locale === DEFAULT_LOCALE ? "/" : `/${toCode(locale)}/`}>
+        {toDisplayName(locale)}
+      </a>
+    </li>
+  ))}
+</ul>

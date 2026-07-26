@@ -18,8 +18,10 @@
     "format": "oxlint --fix . && oxfmt .",
     "lint": "oxlint . && oxfmt --check .",
     "prepare": "astro sync && husky",
+    "prerelease": "npm run lint && npm run typecheck && npm run test",
     "preview": "astro preview",
     "serve": "astro serve",
+    "test": "vitest --run --coverage",
     "typecheck": "astro check && npx tsc --noEmit"
   },
   "dependencies": {
@@ -27,13 +29,15 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@vitest/coverage-v8": "^4.1.10",
     "husky": "^9.1.7",
     "oxfmt": "^0.60.0",
     "oxlint": "^1.74.0",
     "typescript": "^6.0.3",
-    "varlock": "^1.11.0"
+    "varlock": "^1.11.0",
+    "vitest": "^4.1.10"
   },
   "engines": {
-    "node": ">=22.12"
+    "node": ">=26"
   }
 }

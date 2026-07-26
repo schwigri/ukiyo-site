@@ -1,0 +1,10 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getTranslations } from "@/i18n";
+
+const t = getTranslations(Astro.currentLocale);
+---
+
+<Layout title={t`Page not found`}>
+  <h1>{t`Page not found`}</h1>
+</Layout>

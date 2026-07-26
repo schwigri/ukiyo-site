@@ -1,0 +1,40 @@
+---
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, getTranslations } from "@/i18n";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+const t = getTranslations(Astro.currentLocale);
+---
+
+<html lang={Astro.currentLocale}>
+  <head>
+    <meta charset="utf-8">
+    <title>{title ?? t`Griffen Schwiesow`}</title>
+    {SUPPORTED_LOCALES.map((locale) => {
+      const code = toCode(locale);
+      const url = new URL(locale === DEFAULT_LOCALE ? "/" : `/${code}/`, Astro.site);
+      return (
+        <link
+          href={url.toString()}
+          hreflang={toCode(locale)}
+          rel="alternate"
+        />
+      );
+    })}
+  </head>
+  <body>
+    <header>
+      <nav aria-label={t`Languages`}>
+        <LanguageSwitcher />
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
