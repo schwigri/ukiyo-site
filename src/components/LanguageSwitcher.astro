@@ -1,13 +1,37 @@
 ---
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, toDisplayName } from "@/i18n";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, toDisplayName, toLocale } from "@/i18n";
 ---
 
 <ul>
   {SUPPORTED_LOCALES.map((locale) => (
     <li lang={toCode(locale)}>
-      <a href={locale === DEFAULT_LOCALE ? "/" : `/${toCode(locale)}/`}>
+      <a
+        aria-current={locale === toLocale(Astro.currentLocale) ? "true": undefined}
+        href={locale === DEFAULT_LOCALE ? "/" : `/${toCode(locale)}/`}
+      >
         {toDisplayName(locale)}
       </a>
     </li>
   ))}
 </ul>
+
+<style>
+a[aria-current] {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+li:not(:last-child)::after {
+  content: "•";
+  margin-inline: 0.5em;
+}
+
+ul {
+  align-items: baseline;
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+</style>

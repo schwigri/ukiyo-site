@@ -1,0 +1,31 @@
+---
+import { getTranslations } from "@/i18n";
+
+const t = getTranslations(Astro.currentLocale);
+---
+
+<div>
+  <b>{t`Griffen Schwiesow`}</b>
+  <br>
+  <i>{t`Designer, front-end developer and accessibility specialist`}</i>
+</div>
+
+<style>
+b {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+i {
+  font-style: italic;
+  font-weight: 400;
+
+  &:lang(ja) {
+    font-style: normal;
+  }
+}
+
+div {
+  text-align: center;
+}
+</style>

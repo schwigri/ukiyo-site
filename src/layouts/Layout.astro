@@ -1,9 +1,15 @@
 ---
-import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, getTranslations } from "@/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
+import Logo from "@/components/Logo.astro";
+import Nav from "@/components/Nav.astro";
+import "@fontsource/noto-serif/latin-400.css";
+import "@fontsource/noto-serif/latin-700.css";
+import "@fontsource/noto-serif-jp/japanese-400.css";
+import "@fontsource/noto-serif-jp/japanese-700.css";
 
 interface Props {
-  title?: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -13,7 +19,7 @@ const t = getTranslations(Astro.currentLocale);
 <html lang={Astro.currentLocale}>
   <head>
     <meta charset="utf-8">
-    <title>{title ?? t`Griffen Schwiesow`}</title>
+    <title>{title}</title>
     {SUPPORTED_LOCALES.map((locale) => {
       const code = toCode(locale);
       const url = new URL(locale === DEFAULT_LOCALE ? "/" : `/${code}/`, Astro.site);
@@ -28,13 +34,69 @@ const t = getTranslations(Astro.currentLocale);
   </head>
   <body>
     <header>
-      <nav aria-label={t`Languages`}>
+      <Logo />
+
+      <Nav />
+
+      <nav aria-label={t`Languages`} class="languages">
         <LanguageSwitcher />
       </nav>
     </header>
 
-    <main>
+    <main id="content">
       <slot />
     </main>
   </body>
 </html>
+
+<style>
+main {
+  margin-inline: auto;
+  max-width: 80ch;
+}
+
+nav {
+  font-size: 0.875em;
+  margin-block-start: 0.5em;
+  text-align: center;
+}
+
+header {
+  margin-block: 2em;
+}
+</style>
+
+<style is:global>
+a:link,
+a:visited {
+  color: var(--accent);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Serif", "Noto Serif JP", serif;
+  margin: 1em;
+}
+
+:root {
+  --slate-l: oklch(0.98 0.01 48);
+  --slate-d: oklch(0.12 0.02 48);
+
+  --blue-l: oklch(0.58 0.2 248);
+  --blue-d: oklch(0.5 0.19 248);
+
+  --bg: light-dark(var(--slate-l), var(--slate-d));
+  --fg: light-dark(var(--slate-d), var(--slate-l));
+
+  --accent: light-dark(var(--blue-d), var(--blue-l));
+
+  color-scheme: light dark;
+}
+
+@media (orientation: landscape) {
+  html:lang(ja) {
+    writing-mode: vertical-rl;
+  }
+}
+</style>

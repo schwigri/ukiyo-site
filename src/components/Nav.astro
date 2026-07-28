@@ -1,0 +1,58 @@
+---
+import { DEFAULT_LOCALE, getTranslations, toLocale } from "@/i18n";
+
+const t = getTranslations(Astro.currentLocale);
+const currentLocale = toLocale(Astro.currentLocale);
+const homePath = currentLocale === DEFAULT_LOCALE ? "" : `/${Astro.currentLocale}`;
+const isHome = Astro.url.pathname === homePath || Astro.url.pathname === `${homePath}/`;
+---
+
+<nav>
+  <ul>
+    <li>
+      <a aria-current={isHome ? "page" : undefined} href={`${homePath}/`}>
+        {t`Home`}
+      </a>
+    </li>
+    <li>
+      <a
+        aria-current={Astro.url.pathname === t`/about-me` ? "page" : undefined}
+        href={t`/about-me`}
+      >
+        {t`About me`}
+      </a>
+    </li>
+    <li>
+      <a aria-current={Astro.url.pathname === t`/blog/` ? "page" : undefined} href={t`/blog/`}>{t`Blog`}</a>
+    </li>
+    <li>
+      <a aria-current={Astro.url.pathname === t`/resume` ? "page" : undefined} href={t`/resume`}>{t`Résumé`}</a>
+    </li>
+  </ul>
+</nav>
+
+<style>
+a[aria-current] {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+li:not(:last-child)::after {
+  content: "•";
+  margin-inline: 0.5em;
+}
+
+ul {
+  align-items: baseline;
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  margin-block-start: 1em;
+  text-align: center;
+}
+</style>

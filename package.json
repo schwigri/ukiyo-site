@@ -25,6 +25,8 @@
     "typecheck": "astro check && npx tsc --noEmit"
   },
   "dependencies": {
+    "@fontsource/noto-serif": "^5.3.0",
+    "@fontsource/noto-serif-jp": "^5.3.0",
     "astro": "^7.1.1"
   },
   "devDependencies": {
@@ -39,5 +41,9 @@
   },
   "engines": {
     "node": ">=26"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "fsevents@2.3.3": true
   }
 }

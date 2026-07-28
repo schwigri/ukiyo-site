@@ -22,15 +22,37 @@ export const LOCALE_CONFIGS = Object.freeze({
 //----------------------
 
 export const ENGLISH_STRINGS = Object.freeze({
+  "/about-me": "/about-me",
+  "/blog/": "/blog/",
+  "/resume": "/resume",
+  Home: "Home",
+  "About me": "About me",
+  Blog: "Blog",
+  Résumé: "Résumé",
+  "Griffen Schwiesow — {}": "Griffen Schwiesow — {}",
   "{} — Griffen Schwiesow": "{} — Griffen Schwiesow",
   "Griffen Schwiesow": "Griffen Schwiesow",
+  "Designer, front-end developer and accessibility specialist":
+    "Designer, front-end developer and accessibility specialist",
   Languages: "Languages",
   "Page not found": "Page not found",
+  "Skip to navigation": "Skip to navigation",
 } as const) satisfies Record<string, string>;
 
 export const JAPANESE_STRINGS = Object.freeze({
+  "/about-me": "/ja/profile",
+  "/blog/": "/ja/blog/",
+  "/resume": "/ja/shokumukeirekisho",
+  Home: "トップ",
+  "About me": "プロフィール",
+  Blog: "ブログ",
+  Résumé: "職務経歴書",
+  "Griffen Schwiesow — {}": "グリフィン・シュヴィーゾー｜{}",
   "{} — Griffen Schwiesow": "{}｜グリフィン・シュヴィーゾー",
   "Griffen Schwiesow": "グリフィン・シュヴィーゾー",
+  "Designer, front-end developer and accessibility specialist":
+    "デザイナー・フロントエンド開発・アクセシビリティ専門",
   Languages: "言語",
   "Page not found": "ページが見つかりません",
+  "Skip to navigation": "メニューへスキップ",
 } as const) satisfies Record<UIString, string>;
