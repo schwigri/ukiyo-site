@@ -78,7 +78,11 @@ export function toCode(locale: Locale): string {
 export function toDisplayName(locale: Locale, baseLocale?: Locale): string {
   baseLocale = baseLocale ?? locale;
 
-  const displayNames = displayNamesCache.getOrInsertComputed(baseLocale, newIntlDisplayNames);
+  let displayNames = displayNamesCache.get(baseLocale);
+  if (!displayNames) {
+    displayNames = newIntlDisplayNames(baseLocale);
+    displayNamesCache.set(baseLocale, displayNames);
+  }
 
   const result = displayNames.of(toCode(locale));
   if (!result) {

@@ -2,7 +2,7 @@
   "$schema": "https://www.schemastore.org/sourcehut-build-0.65.0.json",
   "image": "alpine/latest",
   "oauth": "pages.sr.ht/PAGES:RW",
-  "packages": ["hut", "nodejs", "npm"],
+  "packages": ["hut", "icu-data-full", "nodejs", "npm"],
   "submitter": { "git.sr.ht": { "allow-refs": ["refs/heads/main"], "enabled": true } },
   "tasks":
     [
