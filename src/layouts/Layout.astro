@@ -20,6 +20,7 @@ const t = getTranslations(Astro.currentLocale);
   <head>
     <meta charset="utf-8">
     <title>{title}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     {SUPPORTED_LOCALES.map((locale) => {
       const code = toCode(locale);
       const url = new URL(locale === DEFAULT_LOCALE ? "/" : `/${code}/`, Astro.site);
