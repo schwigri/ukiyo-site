@@ -1,5 +1,7 @@
 import type { UIString } from "./types";
 
+const isDev = import.meta.env.APP_ENV === "development";
+
 export enum Locale {
   ENGLISH = "ENGLISH",
   JAPANESE = "JAPANESE",
@@ -22,9 +24,9 @@ export const LOCALE_CONFIGS = Object.freeze({
 //----------------------
 
 export const ENGLISH_STRINGS = Object.freeze({
-  "/about-me": "/about-me",
+  "/about-me.html": isDev ? "/about-me" : "/about-me.html",
   "/blog/": "/blog/",
-  "/resume": "/resume",
+  "/resume.html": isDev ? "/resume" : "/resume.html",
   Home: "Home",
   "About me": "About me",
   Blog: "Blog",
@@ -40,9 +42,9 @@ export const ENGLISH_STRINGS = Object.freeze({
 } as const) satisfies Record<string, string>;
 
 export const JAPANESE_STRINGS = Object.freeze({
-  "/about-me": "/ja/profile",
+  "/about-me.html": isDev ? "/ja/profile" : "/ja/profile.html",
   "/blog/": "/ja/blog/",
-  "/resume": "/ja/shokumukeirekisho",
+  "/resume.html": isDev ? "/ja/shokumukeirekisho" : "/ja/shokumukeirekisho.html",
   Home: "トップ",
   "About me": "プロフィール",
   Blog: "ブログ",

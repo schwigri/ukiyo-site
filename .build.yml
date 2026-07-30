@@ -8,6 +8,8 @@
     [
       { "build": "cd ukiyo-site \n npm ci \n npm run prerelease \n npm run build" },
       { "package": "cd ukiyo-site \n tar -C dist -cvz . > site.tar.gz" },
-      { "upload": "cd ukiyo-site \n hut pages publish -d www.griffen.dev site.tar.gz" },
+      {
+        "upload": "cd ukiyo-site \n hut pages publish -d www.griffen.dev --site-config siteconfig.json site.tar.gz",
+      },
     ],
 }

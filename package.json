@@ -13,13 +13,13 @@
   "author": "Griffen Schwiesow <gs@griffen.dev>",
   "type": "module",
   "scripts": {
-    "build": "astro build",
+    "build": "APP_ENV=production astro build",
     "dev": "astro dev",
     "format": "oxlint --fix . && oxfmt .",
     "lint": "oxlint . && oxfmt --check .",
     "prepare": "astro sync && husky",
     "prerelease": "npm run lint && npm run typecheck && npm run test",
-    "preview": "astro preview",
+    "preview": "APP_ENV=production astro preview",
     "serve": "astro serve",
     "test": "vitest --run --coverage",
     "typecheck": "astro check && npx tsc --noEmit"
@@ -27,7 +27,9 @@
   "dependencies": {
     "@fontsource/noto-serif": "^5.3.0",
     "@fontsource/noto-serif-jp": "^5.3.0",
-    "astro": "^7.1.1"
+    "@varlock/astro-integration": "^1.3.0",
+    "astro": "^7.1.1",
+    "varlock": "^1.14.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
@@ -36,7 +38,6 @@
     "oxfmt": "^0.60.0",
     "oxlint": "^1.74.0",
     "typescript": "^6.0.3",
-    "varlock": "^1.11.0",
     "vitest": "^4.1.10"
   },
   "engines": {
