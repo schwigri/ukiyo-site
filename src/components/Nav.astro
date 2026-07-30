@@ -16,8 +16,8 @@ const isHome = Astro.url.pathname === homePath || Astro.url.pathname === `${home
     </li>
     <li>
       <a
-        aria-current={Astro.url.pathname === t`/about-me` ? "page" : undefined}
-        href={t`/about-me`}
+        aria-current={Astro.url.pathname === t`/about-me/` ? "page" : undefined}
+        href={t`/about-me.html`}
       >
         {t`About me`}
       </a>
@@ -26,7 +26,7 @@ const isHome = Astro.url.pathname === homePath || Astro.url.pathname === `${home
       <a aria-current={Astro.url.pathname === t`/blog/` ? "page" : undefined} href={t`/blog/`}>{t`Blog`}</a>
     </li>
     <li>
-      <a aria-current={Astro.url.pathname === t`/resume` ? "page" : undefined} href={t`/resume`}>{t`Résumé`}</a>
+      <a aria-current={Astro.url.pathname === t`/resume/` ? "page" : undefined} href={t`/resume.html`}>{t`Résumé`}</a>
     </li>
   </ul>
 </nav>

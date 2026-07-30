@@ -22,9 +22,11 @@ export const LOCALE_CONFIGS = Object.freeze({
 //----------------------
 
 export const ENGLISH_STRINGS = Object.freeze({
-  "/about-me": "/about-me",
+  "/about-me/": "/about-me/",
+  "/about-me.html": "/about-me.html",
   "/blog/": "/blog/",
-  "/resume": "/resume",
+  "/resume/": "/resume/",
+  "/resume.html": "/resume.html",
   Home: "Home",
   "About me": "About me",
   Blog: "Blog",
@@ -40,9 +42,11 @@ export const ENGLISH_STRINGS = Object.freeze({
 } as const) satisfies Record<string, string>;
 
 export const JAPANESE_STRINGS = Object.freeze({
-  "/about-me": "/ja/profile",
+  "/about-me/": "/ja/profile/",
+  "/about-me.html": "/ja/profile.html",
   "/blog/": "/ja/blog/",
-  "/resume": "/ja/shokumukeirekisho",
+  "/resume/": "/ja/shokumukeirekisho/",
+  "/resume.html": "/ja/shokumukeirekisho.html",
   Home: "トップ",
   "About me": "プロフィール",
   Blog: "ブログ",

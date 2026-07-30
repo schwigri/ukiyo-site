@@ -6,4 +6,5 @@ node_modules/
 .env.*
 !.env.schema
 .eslintcache
+env.d.ts
 site.tar.gz
