@@ -7,7 +7,7 @@ const homePath = currentLocale === DEFAULT_LOCALE ? "" : `/${Astro.currentLocale
 const isHome = Astro.url.pathname === homePath || Astro.url.pathname === `${homePath}/`;
 ---
 
-<nav>
+<nav data-current-pathname={Astro.url.pathname}>
   <ul>
     <li>
       <a aria-current={isHome ? "page" : undefined} href={`${homePath}/`}>

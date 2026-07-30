@@ -1,11 +1,10 @@
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode } from "./src/i18n";
 import { defineConfig, envField } from "astro/config";
-import { ENV } from "varlock/env";
 import varlockAstroIntegration from "@varlock/astro-integration";
 
 export default defineConfig({
   build: {
-    format: ENV.APP_ENV === "development" ? "directory" : "preserve",
+    format: "preserve",
   },
   env: {
     schema: {
@@ -18,5 +17,4 @@ export default defineConfig({
   },
   integrations: [varlockAstroIntegration()],
   site: "https://www.griffen.dev",
-  trailingSlash: ENV.APP_ENV === "development" ? "ignore" : "always",
 });
