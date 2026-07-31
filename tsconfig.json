@@ -4,7 +4,8 @@
     "paths": {
       "@/i18n": ["./src/i18n/index.ts"],
       "@/components/*": ["./src/components/*"],
-      "@/layouts/*": ["./src/layouts/*"]
+      "@/layouts/*": ["./src/layouts/*"],
+      "@/styles/*": ["./src/styles/*"]
     }
   },
   "exclude": ["dist"],

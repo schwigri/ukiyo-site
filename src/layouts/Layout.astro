@@ -3,10 +3,7 @@ import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, getTranslations } from "@/i1
 import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 import Logo from "@/components/Logo.astro";
 import Nav from "@/components/Nav.astro";
-import "@fontsource/noto-serif/latin-400.css";
-import "@fontsource/noto-serif/latin-700.css";
-import "@fontsource/noto-serif-jp/japanese-400.css";
-import "@fontsource/noto-serif-jp/japanese-700.css";
+import "@/styles/global.css";
 
 interface Props {
   title: string;
@@ -53,7 +50,7 @@ const t = getTranslations(Astro.currentLocale);
 <style>
 main {
   margin-inline: auto;
-  max-width: 80ch;
+  max-inline-size: 80ch;
 }
 
 nav {
@@ -64,40 +61,5 @@ nav {
 
 header {
   margin-block: 2em;
-}
-</style>
-
-<style is:global>
-a:link,
-a:visited {
-  color: var(--accent);
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--fg);
-  font-family: "Noto Serif", "Noto Serif JP", serif;
-  margin: 1em;
-}
-
-:root {
-  --slate-l: oklch(0.98 0.01 48);
-  --slate-d: oklch(0.12 0.02 48);
-
-  --blue-l: oklch(0.58 0.2 248);
-  --blue-d: oklch(0.5 0.19 248);
-
-  --bg: light-dark(var(--slate-l), var(--slate-d));
-  --fg: light-dark(var(--slate-d), var(--slate-l));
-
-  --accent: light-dark(var(--blue-d), var(--blue-l));
-
-  color-scheme: light dark;
-}
-
-@media (orientation: landscape) {
-  html:lang(ja) {
-    writing-mode: vertical-rl;
-  }
 }
 </style>

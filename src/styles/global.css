@@ -1,0 +1,35 @@
+a:link,
+a:visited {
+  color: var(--accent);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  margin: 1em;
+}
+
+:root {
+  --slate-l: oklch(0.98 0.01 48);
+  --slate-d: oklch(0.12 0.02 48);
+
+  --blue-l: oklch(0.58 0.2 248);
+  --blue-d: oklch(0.5 0.19 248);
+
+  --bg: light-dark(var(--slate-l), var(--slate-d));
+  --fg: light-dark(var(--slate-d), var(--slate-l));
+
+  --accent: light-dark(var(--blue-d), var(--blue-l));
+
+  color-scheme: light dark;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@media (orientation: landscape) {
+  html:lang(ja) {
+    writing-mode: vertical-rl;
+  }
+}
