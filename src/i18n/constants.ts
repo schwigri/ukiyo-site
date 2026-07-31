@@ -39,6 +39,7 @@ export const ENGLISH_STRINGS = Object.freeze({
   Languages: "Languages",
   "Page not found": "Page not found",
   "Skip to navigation": "Skip to navigation",
+  "Copyright © 2026 Griffen Schwiesow": "Copyright © 2026 Griffen Schwiesow",
 } as const) satisfies Record<string, string>;
 
 export const JAPANESE_STRINGS = Object.freeze({
@@ -59,4 +60,5 @@ export const JAPANESE_STRINGS = Object.freeze({
   Languages: "言語",
   "Page not found": "ページが見つかりません",
   "Skip to navigation": "メニューへスキップ",
+  "Copyright © 2026 Griffen Schwiesow": "令和八年 © グリフィン・シュヴィーゾー",
 } as const) satisfies Record<UIString, string>;
