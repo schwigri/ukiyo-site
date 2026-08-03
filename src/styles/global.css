@@ -1,25 +1,36 @@
-a:link,
+hr {
+  color: inherit;
+  border-bottom-style: groove;
+}
+
+a:link {
+  color: var(--blue);
+}
+
 a:visited {
-  color: var(--accent);
+  color: var(--purple);
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: var(--slate);
+  color: var(--slate-inverse);
+  font-family: serif;
   margin: 1em;
 }
 
 :root {
-  --slate-l: oklch(0.98 0.01 48);
-  --slate-d: oklch(0.12 0.02 48);
+  --slate-l: oklch(0.9588 0.0331 61.25);
+  --slate-d: oklch(from var(--slate-l) calc(1 - l) c h);
+  --slate: light-dark(var(--slate-l), var(--slate-d));
+  --slate-inverse: light-dark(var(--slate-d), var(--slate-l));
 
-  --blue-l: oklch(0.58 0.2 248);
-  --blue-d: oklch(0.5 0.19 248);
+  --blue-l: oklch(0.4677 0.1638 248);
+  --blue-d: oklch(from var(--blue-l) 0.8397 0.0909 h);
+  --blue: light-dark(var(--blue-l), var(--blue-d));
 
-  --bg: light-dark(var(--slate-l), var(--slate-d));
-  --fg: light-dark(var(--slate-d), var(--slate-l));
-
-  --accent: light-dark(var(--blue-d), var(--blue-l));
+  --purple-l: oklch(from var(--blue-l) l c 294);
+  --purple-d: oklch(from var(--blue-d) l c 294);
+  --purple: light-dark(var(--purple-l), var(--purple-d));
 
   color-scheme: light dark;
 }
