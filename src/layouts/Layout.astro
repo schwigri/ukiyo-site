@@ -1,5 +1,5 @@
 ---
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, getTranslations } from "@/i18n";
+import { SUPPORTED_LOCALES, toCode, getTranslations, translatePathname } from "@/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 import Logo from "@/components/Logo.astro";
 import Nav from "@/components/Nav.astro";
@@ -20,16 +20,27 @@ const t = getTranslations(Astro.currentLocale);
     <title>{title}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {description ? <meta name="description" content={description}> : null}
+    <link rel="canonical" href={(new URL(Astro.url.pathname, Astro.site)).toString()} />
     {SUPPORTED_LOCALES.map((locale) => {
       const code = toCode(locale);
-      const url = new URL(locale === DEFAULT_LOCALE ? "/" : `/${code}/`, Astro.site);
-      return (
+      if (code === Astro.currentLocale) {
+        return (
+          <link
+            href={(new URL(Astro.url.pathname, Astro.site)).toString()}
+            hreflang={code}
+            rel="alternate"
+          />
+        );
+      }
+
+      const translatedPathname = translatePathname(Astro.url.pathname, locale);
+      return translatedPathname ? (
         <link
-          href={url.toString()}
-          hreflang={toCode(locale)}
+          href={(new URL(translatedPathname, Astro.site)).toString()}
+          hreflang={code}
           rel="alternate"
         />
-      );
+      ) : null;
     })}
   </head>
   <body>

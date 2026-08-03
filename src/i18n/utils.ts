@@ -4,6 +4,7 @@ import {
   JAPANESE_STRINGS,
   Locale,
   LOCALE_CONFIGS,
+  PATHNAMES,
   SUPPORTED_LOCALES,
 } from "./constants";
 import type { UIString } from "./types";
@@ -101,4 +102,29 @@ export function toLocale(value?: Locale | string): Locale {
   }
 
   return DEFAULT_LOCALE;
+}
+
+export function getLocaleFromPathname(pathname: string): Locale {
+  const candidates = SUPPORTED_LOCALES.filter((x) => x !== DEFAULT_LOCALE);
+  for (const supportedLocale of candidates) {
+    const prefix = `/${toCode(supportedLocale)}/`;
+    if (pathname === prefix || pathname.startsWith(prefix)) {
+      return supportedLocale;
+    }
+  }
+
+  return DEFAULT_LOCALE;
+}
+
+export function translatePathname(pathname: string, targetLocale: Locale): string | undefined {
+  const sourceLocale = getLocaleFromPathname(pathname);
+  if (sourceLocale === targetLocale) return pathname;
+
+  for (const pathInfo of PATHNAMES) {
+    if (pathInfo[sourceLocale] === pathname) {
+      return pathInfo[targetLocale];
+    }
+  }
+
+  return undefined;
 }

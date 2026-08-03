@@ -1,18 +1,22 @@
 ---
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, toDisplayName, toLocale } from "@/i18n";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, toDisplayName, toLocale, translatePathname } from "@/i18n";
 ---
 
 <ul>
-  {SUPPORTED_LOCALES.map((locale) => (
-    <li lang={toCode(locale)}>
-      <a
-        aria-current={locale === toLocale(Astro.currentLocale) ? "true": undefined}
-        href={locale === DEFAULT_LOCALE ? "/" : `/${toCode(locale)}/`}
-      >
-        {toDisplayName(locale)}
-      </a>
-    </li>
-  ))}
+  {SUPPORTED_LOCALES.map((locale) => {
+    const pathname = translatePathname(Astro.url.pathname, locale);
+    const homePath = locale === DEFAULT_LOCALE ? "/" : `/${toCode(locale)}/`;
+    return (
+      <li lang={toCode(locale)}>
+        <a
+          aria-current={locale === toLocale(Astro.currentLocale) ? "true": undefined}
+          href={pathname || homePath}
+        >
+          {toDisplayName(locale)}
+        </a>
+      </li>
+    );
+  })}
 </ul>
 
 <style>

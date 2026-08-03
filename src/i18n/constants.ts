@@ -62,3 +62,10 @@ export const JAPANESE_STRINGS = Object.freeze({
   "Skip to navigation": "メニューへスキップ",
   "Copyright © 2026 Griffen Schwiesow": "令和八年 © グリフィン・シュヴィーゾー",
 } as const) satisfies Record<UIString, string>;
+
+export const PATHNAMES = Object.freeze([
+  { [Locale.ENGLISH]: "/", [Locale.JAPANESE]: "/ja/" },
+  { [Locale.ENGLISH]: "/about-me.html", [Locale.JAPANESE]: "/ja/profile.html" },
+  { [Locale.ENGLISH]: "/blog/", [Locale.JAPANESE]: "/ja/blog/" },
+  { [Locale.ENGLISH]: "/resume.html", [Locale.JAPANESE]: "/ja/shokumukeirekisho.html" },
+] as const) satisfies ReadonlyArray<Record<Locale, string>>;
