@@ -26,7 +26,7 @@ export async function GET() {
     "A RSS feed containing the latest blog posts from Griffen Schwiesow.",
   );
   addChild(channel, "language", "en");
-  addChild(channel, "pubDate", new Date().toUTCString());
+  addChild(channel, "pubDate", "Tue, 04 Aug 2026 07:08:59 GMT");
   addChild(channel, "lastBuildDate", new Date().toUTCString());
 
   const selfLink = addChild(channel, "atom:link");
