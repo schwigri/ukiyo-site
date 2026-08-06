@@ -1,7 +1,8 @@
 ---
 import { DEFAULT_LOCALE, getTranslations, toLocale } from "@/i18n";
+import T from "@/components/T.astro";
 
-const t = getTranslations(Astro.currentLocale);
+const { s, t } = getTranslations(Astro.currentLocale);
 const currentLocale = toLocale(Astro.currentLocale);
 const homePath = currentLocale === DEFAULT_LOCALE ? "" : `/${Astro.currentLocale}`;
 const isHome = Astro.url.pathname === homePath || Astro.url.pathname === `${homePath}/`;
@@ -11,22 +12,26 @@ const isHome = Astro.url.pathname === homePath || Astro.url.pathname === `${home
   <ul>
     <li>
       <a aria-current={isHome ? "page" : undefined} href={`${homePath}/`}>
-        {t`Home`}
+        <T text={t`Home`} />
       </a>
     </li>
     <li>
       <a
-        aria-current={Astro.url.pathname === t`/about-me/` ? "page" : undefined}
-        href={t`/about-me.html`}
+        aria-current={Astro.url.pathname === s`/about-me/` ? "page" : undefined}
+        href={s`/about-me.html`}
       >
-        {t`About me`}
+        <T text={t`About me`} />
       </a>
     </li>
     <li>
-      <a aria-current={Astro.url.pathname.startsWith(t`/blog/`) ? "page" : undefined} href={t`/blog/`}>{t`Blog`}</a>
+      <a aria-current={Astro.url.pathname.startsWith(s`/blog/`) ? "page" : undefined} href={s`/blog/`}>
+        <T text={t`Blog`} />
+      </a>
     </li>
     <li>
-      <a aria-current={Astro.url.pathname === t`/resume/` ? "page" : undefined} href={t`/resume.html`}>{t`Résumé`}</a>
+      <a aria-current={Astro.url.pathname === s`/resume/` ? "page" : undefined} href={s`/resume.html`}>
+        <T text={t`Résumé`} />
+      </a>
     </li>
   </ul>
 </nav>

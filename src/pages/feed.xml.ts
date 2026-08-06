@@ -23,7 +23,7 @@ export async function GET() {
   addChild(
     channel,
     "description",
-    "A RSS feed containing the latest blog posts from Griffen Schwiesow.",
+    "An RSS feed containing the latest blog posts from Griffen Schwiesow.",
   );
   addChild(channel, "language", "en");
   addChild(channel, "pubDate", "Tue, 04 Aug 2026 07:08:59 GMT");
@@ -39,6 +39,12 @@ export async function GET() {
   japaneseLink.setAttribute("hreflang", "ja");
   japaneseLink.setAttribute("rel", "alternate");
   japaneseLink.setAttribute("type", "application/rss+xml");
+
+  const koreanLink = addChild(channel, "atom:link");
+  koreanLink.setAttribute("href", "https://www.griffen.dev/ko/feed.xml");
+  koreanLink.setAttribute("hreflang", "ko");
+  koreanLink.setAttribute("rel", "alternate");
+  koreanLink.setAttribute("type", "application/rss+xml");
 
   const serializer = new XMLSerializer();
   return new Response(

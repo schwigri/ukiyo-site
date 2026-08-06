@@ -1,13 +1,14 @@
 ---
+import T from "@/components/T.astro";
 import { getTranslations } from "@/i18n";
 
-const t = getTranslations(Astro.currentLocale);
+const { t } = getTranslations(Astro.currentLocale);
 ---
 
 <div>
   <b>{t`Griffen Schwiesow`}</b>
   <br>
-  <i>{t`Designer, front-end developer and accessibility specialist`}</i>
+  <i><T text={t`Designer, front-end developer and accessibility specialist`} /></i>
 </div>
 
 <style>
@@ -20,7 +21,8 @@ i {
   font-style: italic;
   font-weight: 400;
 
-  &:lang(ja) {
+  &:lang(ja),
+  &:lang(ko) {
     font-style: normal;
   }
 }
