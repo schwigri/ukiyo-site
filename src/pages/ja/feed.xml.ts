@@ -36,6 +36,12 @@ export async function GET() {
   englishLink.setAttribute("rel", "alternate");
   englishLink.setAttribute("type", "application/rss+xml");
 
+  const koreanLink = addChild(channel, "atom:link");
+  koreanLink.setAttribute("href", "https://www.griffen.dev/ko/feed.xml");
+  koreanLink.setAttribute("hreflang", "ja");
+  koreanLink.setAttribute("rel", "alternate");
+  koreanLink.setAttribute("type", "application/rss+xml");
+
   const serializer = new XMLSerializer();
   return new Response(
     `<?xml version="1.0" encoding="UTF-8"?>\n${serializer.serializeToString(document)}`,

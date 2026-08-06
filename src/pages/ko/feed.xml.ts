@@ -18,33 +18,29 @@ export async function GET() {
   }
 
   const channel = addChild(rss, "channel");
-  addChild(channel, "title", "Griffen's Blog");
-  addChild(channel, "link", "https://www.griffen.dev/blog/");
-  addChild(
-    channel,
-    "description",
-    "An RSS feed containing the latest blog posts from Griffen Schwiesow.",
-  );
-  addChild(channel, "language", "en");
-  addChild(channel, "pubDate", "Tue, 04 Aug 2026 07:08:59 GMT");
+  addChild(channel, "title", "그리핀의 블로그");
+  addChild(channel, "link", "https://www.griffen.dev/ko/blog/");
+  addChild(channel, "description", "그리핀 슈비조의 최신 블로그 게시물을 담은 RSS 피드입니다.");
+  addChild(channel, "language", "ko");
+  addChild(channel, "pubDate", new Date().toUTCString());
   addChild(channel, "lastBuildDate", new Date().toUTCString());
 
   const selfLink = addChild(channel, "atom:link");
-  selfLink.setAttribute("href", "https://www.griffen.dev/feed.xml");
+  selfLink.setAttribute("href", "https://www.griffen.dev/ko/feed.xml");
   selfLink.setAttribute("rel", "self");
   selfLink.setAttribute("type", "application/rss+xml");
+
+  const englishLink = addChild(channel, "atom:link");
+  englishLink.setAttribute("href", "https://www.griffen.dev/feed.xml");
+  englishLink.setAttribute("hreflang", "en");
+  englishLink.setAttribute("rel", "alternate");
+  englishLink.setAttribute("type", "application/rss+xml");
 
   const japaneseLink = addChild(channel, "atom:link");
   japaneseLink.setAttribute("href", "https://www.griffen.dev/ja/feed.xml");
   japaneseLink.setAttribute("hreflang", "ja");
   japaneseLink.setAttribute("rel", "alternate");
   japaneseLink.setAttribute("type", "application/rss+xml");
-
-  const koreanLink = addChild(channel, "atom:link");
-  koreanLink.setAttribute("href", "https://www.griffen.dev/ko/feed.xml");
-  koreanLink.setAttribute("hreflang", "ja");
-  koreanLink.setAttribute("rel", "alternate");
-  koreanLink.setAttribute("type", "application/rss+xml");
 
   const serializer = new XMLSerializer();
   return new Response(

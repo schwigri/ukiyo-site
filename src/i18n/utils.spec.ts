@@ -2,6 +2,7 @@ import {
   DEFAULT_LOCALE,
   ENGLISH_STRINGS,
   JAPANESE_STRINGS,
+  KOREAN_STRINGS,
   Locale,
   SUPPORTED_LOCALES,
 } from "./constants";
@@ -24,6 +25,9 @@ describe("getTranslations()", () => {
           break;
         case Locale.JAPANESE:
           expect(result).toBe(JAPANESE_STRINGS["Page not found"]);
+          break;
+        case Locale.KOREAN:
+          expect(result).toBe(KOREAN_STRINGS["Page not found"]);
           break;
         default:
           expect(result).toBe("");
@@ -57,6 +61,9 @@ describe("toCode()", () => {
         case Locale.JAPANESE:
           expect(result).toBe("ja");
           break;
+        case Locale.KOREAN:
+          expect(result).toBe("ko");
+          break;
         default:
           expect(result).toBe("");
       }
@@ -75,6 +82,9 @@ describe("toDisplayName()", () => {
           break;
         case Locale.JAPANESE:
           expect(result).toBe("日本語");
+          break;
+        case Locale.KOREAN:
+          expect(result).toBe("한국어");
           break;
         default:
           expect(result).toBe("");

@@ -1,11 +1,35 @@
 ---
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, toDisplayName, toLocale, translatePathname } from "@/i18n";
+import { DEFAULT_LOCALE, Locale, SUPPORTED_LOCALES, toCode, toDisplayName, toLocale, translatePathname } from "@/i18n";
+import Ruby from "@/components/Ruby.astro";
 ---
 
 <ul>
   {SUPPORTED_LOCALES.map((locale) => {
     const pathname = translatePathname(Astro.url.pathname, locale);
     const homePath = locale === DEFAULT_LOCALE ? "/" : `/${toCode(locale)}/`;
+
+    if (locale === Locale.KOREAN) {
+      return (
+        <li lang={toCode(locale)}>
+          <a
+            aria-current={locale === toLocale(Astro.currentLocale) ? "true" : undefined}
+            href={pathname || homePath}
+          >
+            <Ruby rb="韓國語" rt="한국어" />
+          </a>
+          {locale === toLocale(Astro.currentLocale) ? (
+            <form id="hanja-form" method="GET">
+              <select aria-label="한자 표기" id="hanja-mode-select" name="hanja">
+                <option value="full">漢字</option>
+                <option selected value="mixed">漢字倂記(한자병기)</option>
+                <option value="off">한글</option>
+              </select>
+            </form>
+          ) : null}
+        </li>
+      );
+    }
+
     return (
       <li lang={toCode(locale)}>
         <a
@@ -19,7 +43,42 @@ import { DEFAULT_LOCALE, SUPPORTED_LOCALES, toCode, toDisplayName, toLocale, tra
   })}
 </ul>
 
+<script>
+const url = new URL(window.location.toString());
+const newHanjaPreference = url.searchParams.get("hanja");
+switch (newHanjaPreference) {
+  case "full":
+    localStorage.setItem("hanja", "full");
+    break;
+  case "mixed":
+    localStorage.setItem("hanja", "mixed");
+    break;
+  case "off":
+    localStorage.setItem("hanja", "off");
+    break;
+}
+
+const hanjaPreference = localStorage.getItem("hanja") ?? "off";
+document.documentElement.setAttribute("data-hanja", hanjaPreference);
+
+const hanjaForm = document.getElementById("hanja-form");
+const hanjaModeSelect = document.getElementById("hanja-mode-select");
+if (hanjaModeSelect instanceof HTMLSelectElement) {
+  hanjaModeSelect.value = hanjaPreference;
+  hanjaModeSelect.addEventListener("change", function handleChange() {
+    if (hanjaForm instanceof HTMLFormElement) {
+      hanjaForm.submit();
+    }
+  });
+}
+</script>
+
 <style>
+form {
+  display: inline-block;
+  margin-inline-start: 0.5em;
+}
+
 a[aria-current] {
   color: inherit;
   font-weight: 700;

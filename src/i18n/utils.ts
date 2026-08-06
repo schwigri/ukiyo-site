@@ -2,6 +2,7 @@ import {
   DEFAULT_LOCALE,
   ENGLISH_STRINGS,
   JAPANESE_STRINGS,
+  KOREAN_STRINGS,
   Locale,
   LOCALE_CONFIGS,
   PATHNAMES,
@@ -33,6 +34,9 @@ export function getTranslations(
     case Locale.JAPANESE:
       strings = JAPANESE_STRINGS;
       break;
+    case Locale.KOREAN:
+      strings = KOREAN_STRINGS;
+      break;
   }
 
   return function t(template: TemplateStringsArray, ...values: string[]): string {
@@ -61,6 +65,7 @@ export function isLocale(value: unknown): value is Locale {
   switch (value) {
     case Locale.ENGLISH:
     case Locale.JAPANESE:
+    case Locale.KOREAN:
       return true;
     default:
       return false;

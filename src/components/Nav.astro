@@ -1,10 +1,12 @@
 ---
-import { DEFAULT_LOCALE, getTranslations, toLocale } from "@/i18n";
+import { DEFAULT_LOCALE, Locale, getTranslations, toLocale } from "@/i18n";
+import Ruby from "@/components/Ruby.astro";
 
 const t = getTranslations(Astro.currentLocale);
 const currentLocale = toLocale(Astro.currentLocale);
 const homePath = currentLocale === DEFAULT_LOCALE ? "" : `/${Astro.currentLocale}`;
 const isHome = Astro.url.pathname === homePath || Astro.url.pathname === `${homePath}/`;
+const isKorean = currentLocale === Locale.KOREAN;
 ---
 
 <nav>
@@ -19,14 +21,16 @@ const isHome = Astro.url.pathname === homePath || Astro.url.pathname === `${home
         aria-current={Astro.url.pathname === t`/about-me/` ? "page" : undefined}
         href={t`/about-me.html`}
       >
-        {t`About me`}
+        {isKorean ? <Ruby rb="紹介" rt="소개" /> : t`About me`}
       </a>
     </li>
     <li>
       <a aria-current={Astro.url.pathname.startsWith(t`/blog/`) ? "page" : undefined} href={t`/blog/`}>{t`Blog`}</a>
     </li>
     <li>
-      <a aria-current={Astro.url.pathname === t`/resume/` ? "page" : undefined} href={t`/resume.html`}>{t`Résumé`}</a>
+      <a aria-current={Astro.url.pathname === t`/resume/` ? "page" : undefined} href={t`/resume.html`}>
+        {isKorean ? <Ruby rb="履歷書" rt="이력서" /> : t`Résumé`}
+      </a>
     </li>
   </ul>
 </nav>

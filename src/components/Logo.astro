@@ -1,13 +1,16 @@
 ---
-import { getTranslations } from "@/i18n";
+import { Locale, getTranslations, toLocale } from "@/i18n";
+import Ruby from "@/components/Ruby.astro";
 
+const currentLocale = toLocale(Astro.currentLocale);
+const isKorean = currentLocale === Locale.KOREAN;
 const t = getTranslations(Astro.currentLocale);
 ---
 
 <div>
   <b>{t`Griffen Schwiesow`}</b>
   <br>
-  <i>{t`Designer, front-end developer and accessibility specialist`}</i>
+  <i>{isKorean ? (<>디자이너·프론트엔드 <Ruby rb="開發者" rt="개발자" />·<Ruby rb="接近性" rt="접근성" /> <Ruby rb="專門家" rt="전문가" /></>) : t`Designer, front-end developer and accessibility specialist`}</i>
 </div>
 
 <style>
@@ -20,7 +23,8 @@ i {
   font-style: italic;
   font-weight: 400;
 
-  &:lang(ja) {
+  &:lang(ja),
+  &:lang(ko) {
     font-style: normal;
   }
 }
