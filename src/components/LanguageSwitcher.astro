@@ -61,14 +61,21 @@ switch (newHanjaPreference) {
 const hanjaPreference = localStorage.getItem("hanja") ?? "off";
 document.documentElement.setAttribute("data-hanja", hanjaPreference);
 
-const hanjaForm = document.getElementById("hanja-form");
 const hanjaModeSelect = document.getElementById("hanja-mode-select");
 if (hanjaModeSelect instanceof HTMLSelectElement) {
   hanjaModeSelect.value = hanjaPreference;
-  hanjaModeSelect.addEventListener("change", function handleChange() {
-    if (hanjaForm instanceof HTMLFormElement) {
-      hanjaForm.submit();
+  hanjaModeSelect.addEventListener("change", function handleChange(e) {
+    if (!(e.target instanceof HTMLSelectElement)) {
+      throw new Error("Invalid event target");
     }
+
+    const newHanjaMode = e.target.value;
+    if (!["off", "mixed", "full"].includes(newHanjaMode)) {
+      throw new Error(`Unsupported hanja mode "${newHanjaMode}"`);
+    }
+
+    localStorage.setItem("hanja", newHanjaMode);
+    document.documentElement.setAttribute("data-hanja", newHanjaMode);
   });
 }
 </script>

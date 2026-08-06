@@ -38,7 +38,7 @@ export async function GET() {
 
   const koreanLink = addChild(channel, "atom:link");
   koreanLink.setAttribute("href", "https://www.griffen.dev/ko/feed.xml");
-  koreanLink.setAttribute("hreflang", "ja");
+  koreanLink.setAttribute("hreflang", "ko");
   koreanLink.setAttribute("rel", "alternate");
   koreanLink.setAttribute("type", "application/rss+xml");
 

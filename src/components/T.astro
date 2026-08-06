@@ -1,0 +1,12 @@
+---
+import Ruby from "@/components/Ruby.astro";
+import type { UITranslation } from "@/i18n";
+
+interface Props {
+  text: UITranslation;
+}
+
+const { text } = Astro.props;
+---
+
+{Array.isArray(text) ? text.map((part) => typeof part === "string" ? part : <Ruby rb={part.rb} rt={part.rt} />) : text}

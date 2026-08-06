@@ -8,7 +8,7 @@ import {
   PATHNAMES,
   SUPPORTED_LOCALES,
 } from "./constants";
-import type { UIString } from "./types";
+import type { UIString, UITranslation } from "./types";
 
 //----------------------
 // Local helpers
@@ -24,12 +24,13 @@ function newIntlDisplayNames(locale: Locale): Intl.DisplayNames {
 // Public APIs
 //----------------------
 
-export function getTranslations(
-  locale?: Locale | string,
-): (template: TemplateStringsArray, ...values: string[]) => string {
+export function getTranslations(locale?: Locale | string): {
+  s: (template: TemplateStringsArray, ...values: string[]) => string;
+  t: (template: TemplateStringsArray, ...values: string[]) => UITranslation;
+} {
   locale = toLocale(locale);
 
-  let strings: Record<UIString, string> = ENGLISH_STRINGS;
+  let strings: Record<UIString, UITranslation> = ENGLISH_STRINGS;
   switch (locale) {
     case Locale.JAPANESE:
       strings = JAPANESE_STRINGS;
@@ -39,7 +40,7 @@ export function getTranslations(
       break;
   }
 
-  return function t(template: TemplateStringsArray, ...values: string[]): string {
+  function t(template: TemplateStringsArray, ...values: string[]): UITranslation {
     // Construct the key, replacing empty strings with {} as the
     // chosen standard for string interpolation values
     const key = template.map((value) => (value === "" ? "{}" : value)).join("");
@@ -54,10 +55,68 @@ export function getTranslations(
     }
 
     // Replace placeholders with actual values
-    values.forEach((value) => (result = result.replace("{}", value)));
+    values.forEach((value) => {
+      if (typeof result === "string") {
+        result = result.replace("{}", value);
+      } else {
+        result.forEach((resultPiece) => {
+          if (typeof resultPiece === "string") {
+            resultPiece = resultPiece.replace("{}", value);
+          } else {
+            resultPiece.rb = resultPiece.rb.replace("{}", value);
+            resultPiece.rt = resultPiece.rt.replace("{}", value);
+          }
+        });
+      }
+    });
 
     return result;
-  };
+  }
+
+  function s(template: TemplateStringsArray, ...values: string[]): string {
+    // Construct the key, replacing empty strings with {} as the
+    // chosen standard for string interpolation values
+    const key = template.map((value) => (value === "" ? "{}" : value)).join("");
+    if (!isUIString(key)) {
+      throw new Error(`Unknown string: "${key}"`);
+    }
+
+    // Check for known strings using the constructed key
+    let result = strings[key];
+    if (!result) {
+      throw new Error(`Missing ${locale} translation for key "${key}"`);
+    }
+
+    // Replace placeholders with actual values
+    values.forEach((value) => {
+      if (typeof result === "string") {
+        result = result.replace("{}", value);
+      } else {
+        result.forEach((resultPiece) => {
+          if (typeof resultPiece === "string") {
+            resultPiece = resultPiece.replace("{}", value);
+          } else {
+            resultPiece.rb = resultPiece.rb.replace("{}", value);
+            resultPiece.rt = resultPiece.rt.replace("{}", value);
+          }
+        });
+      }
+    });
+
+    return typeof result === "string"
+      ? result
+      : result
+          .map((resultPiece) =>
+            typeof resultPiece === "string"
+              ? resultPiece
+              : locale === Locale.KOREAN
+                ? resultPiece.rt
+                : resultPiece.rb,
+          )
+          .join("");
+  }
+
+  return { s, t };
 }
 
 export function isLocale(value: unknown): value is Locale {

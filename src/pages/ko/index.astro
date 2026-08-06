@@ -3,12 +3,12 @@ import Layout from "@/layouts/Layout.astro";
 import Ruby from "@/components/Ruby.astro";
 import { getTranslations } from "@/i18n";
 
-const t = getTranslations(Astro.currentLocale);
+const { s }= getTranslations(Astro.currentLocale);
 ---
 
 <Layout
   description="접근성과 국제화를 중요하게 생각하는 디자이너·프론트엔드 개발자. 웹을 더 아름답고 더 포용적으로."
-  title={t`Griffen Schwiesow — ${t`Designer, front-end developer and accessibility specialist`}`}
+  title={s`Griffen Schwiesow — ${s`Designer, front-end developer and accessibility specialist`}`}
 >
   <h1>홈</h1>
   <p><Ruby rb="安寧" rt="안녕" />하세요. 저의 웹사이트에 와주셔서 <Ruby rb="感謝" rt="감사" />해요. <Ruby rb="現在" rt="현재" /> Amazon에서 프론트엔드 <Ruby rb="開發者" rt="개발자" />로 일하고 있는데, <Ruby rb="全世界" rt="전 세계" /> <Ruby rb="數十億" rt="수십억" /> <Ruby rb="名" rt="명" />의 <Ruby rb="顧客" rt="고객" />을 기쁘게 할 수 있어서 즐거워요. 열세 살 때부터 웹사이트를 만들어 왔는데, 지금도 점점 더 재미있어지고 있어요. 궁금하시다면 <a href="/ko/sogae.html">제 <Ruby rb="紹介" rt="소개" />를 더 읽어보세요</a>. 리크루터시라면, <a href="/ko/iryeokseo.html">제 <Ruby rb="履歷書" rt="이력서" />도 <Ruby rb="確認" rt="확인" />해 보세요</a>.</p>

@@ -1,4 +1,4 @@
-import type { UIString } from "./types";
+import type { UIString, UITranslation } from "./types";
 
 export enum Locale {
   ENGLISH = "ENGLISH",
@@ -68,7 +68,7 @@ export const JAPANESE_STRINGS = Object.freeze({
   "Copyright © 2026 Griffen Schwiesow": "令和八年 © グリフィン・シュヴィーゾー",
   "Copyright © 2026": "令和八年 ©",
   "PGP key": "PGPキー",
-} as const) satisfies Record<UIString, string>;
+} as const) satisfies Record<UIString, UITranslation>;
 
 export const KOREAN_STRINGS = Object.freeze({
   "/about-me/": "/ko/sogae/",
@@ -77,21 +77,27 @@ export const KOREAN_STRINGS = Object.freeze({
   "/resume/": "/ko/iryeokseo/",
   "/resume.html": "/ko/iryeokseo.html",
   Home: "홈",
-  "About me": "소개",
+  "About me": [{ rb: "紹介", rt: "소개" }],
   Blog: "블로그",
-  Résumé: "이력서",
+  Résumé: [{ rb: "履歷書", rt: "이력서" }],
   "Griffen Schwiesow — {}": "그리핀 슈비조 | {}",
   "{} — Griffen Schwiesow": "{} | 그리핀 슈비조",
   "Griffen Schwiesow": "그리핀 슈비조",
-  "Designer, front-end developer and accessibility specialist":
-    "디자이너·프론트엔드 개발자·접근성 전문가",
-  Languages: "언어",
+  "Designer, front-end developer and accessibility specialist": [
+    "디자이너·프론트엔드 ",
+    { rb: "開發者", rt: "개발자" },
+    "·",
+    { rb: "接近性", rt: "접근성" },
+    " ",
+    { rb: "專門家", rt: "전문가" },
+  ],
+  Languages: [{ rb: "言語", rt: "언어" }],
   "Page not found": "페이지를 찾을 수 없습니다",
-  "Skip to navigation": "탐색으로 건너뛰기",
+  "Skip to navigation": [{ rb: "探索", rt: "탐색" }, "으로 건너뛰기"],
   "Copyright © 2026 Griffen Schwiesow": "2026 © 그리핀 슈비조",
   "Copyright © 2026": "2026 ©",
   "PGP key": "PGP 키",
-} as const) satisfies Record<UIString, string>;
+} as const) satisfies Record<UIString, UITranslation>;
 
 export const PATHNAMES = Object.freeze([
   { [Locale.ENGLISH]: "/", [Locale.JAPANESE]: "/ja/", [Locale.KOREAN]: "/ko/" },

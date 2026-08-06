@@ -11,13 +11,13 @@ import { getTranslations, toCode, toDisplayName, toLocale } from "./utils";
 
 describe("getTranslations()", () => {
   it("should return a function that gets english strings by default", () => {
-    const t = getTranslations();
+    const { t } = getTranslations();
     expect(t`Page not found`).toBe(ENGLISH_STRINGS["Page not found"]);
   });
 
   it("should return a function that gets strings for all supported locales", () => {
     SUPPORTED_LOCALES.forEach((locale) => {
-      const t = getTranslations(locale);
+      const { t } = getTranslations(locale);
       const result = t`Page not found`;
       switch (locale) {
         case Locale.ENGLISH:
@@ -36,13 +36,13 @@ describe("getTranslations()", () => {
   });
 
   it("should support string interpolation", () => {
-    const t = getTranslations();
+    const { t } = getTranslations();
     const test = "Test";
     expect(t`${test} — Griffen Schwiesow`).toBe("Test — Griffen Schwiesow");
   });
 
   it("should throw for unknown strings", () => {
-    const t = getTranslations();
+    const { t } = getTranslations();
     expect(() => t`Made up string for testing`).toThrow(
       `Unknown string: "Made up string for testing"`,
     );

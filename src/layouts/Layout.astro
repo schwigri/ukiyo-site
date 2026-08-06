@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
-const t = getTranslations(Astro.currentLocale);
+const { s, t } = getTranslations(Astro.currentLocale);
 ---
 
 <html lang={Astro.currentLocale}>
@@ -40,7 +40,7 @@ const t = getTranslations(Astro.currentLocale);
 
       <Nav />
 
-      <nav aria-label={t`Languages`} class="languages">
+      <nav aria-label={s`Languages`} class="languages">
         <LanguageSwitcher />
       </nav>
     </header>
