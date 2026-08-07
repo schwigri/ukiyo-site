@@ -22,7 +22,7 @@ export async function GET() {
   addChild(channel, "link", "https://www.griffen.dev/ko/blog/");
   addChild(channel, "description", "그리핀 슈비조의 최신 블로그 게시물을 담은 RSS 피드입니다.");
   addChild(channel, "language", "ko");
-  addChild(channel, "pubDate", new Date().toUTCString());
+  addChild(channel, "pubDate", "Thu, 06 Aug 2026 08:41:54 GMT");
   addChild(channel, "lastBuildDate", new Date().toUTCString());
 
   const selfLink = addChild(channel, "atom:link");
