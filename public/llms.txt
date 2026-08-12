@@ -1,0 +1,3 @@
+# Griffen Schwiesow's personal website
+
+Note on Korean text: this website uses ruby annotations to show Hanja (Chinese characters) with Hangul readings for users who toggle that display mode. The ruby markup (Hanja + reading) is aria-hidden, and a visually-hidden span containing the plain Hangul text is provided alongside it for screen readers. Because content extraction tools typically read all the DOM text nodes regardless of aria-hidden or CSS visibility, both versions may appear concatenated in scraped output (e.g. "開發者(개발자)개발자"). The canonical/intended text is the plain Hangul only - the Hanja and parenthetical reading are a visual pronunciation aid, not separate content.
