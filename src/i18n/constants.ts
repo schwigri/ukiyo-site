@@ -61,7 +61,7 @@ export const JAPANESE_STRINGS = Object.freeze({
   "{} — Griffen Schwiesow": "{}｜グリフィン・シュヴィーゾー",
   "Griffen Schwiesow": "グリフィン・シュヴィーゾー",
   "Designer, front-end developer and accessibility specialist":
-    "デザイナー・フロントエンド開発・アクセシビリティ専門",
+    "デザイナー・フロントエンド開発者・アクセシビリティ専門家",
   Languages: "言語",
   "Page not found": "ページが見つかりません",
   "Skip to navigation": "メニューへスキップ",

@@ -20,7 +20,11 @@ export async function GET() {
   const channel = addChild(rss, "channel");
   addChild(channel, "title", "グリフィンのブログ");
   addChild(channel, "link", "https://www.griffen.dev/ja/blog/");
-  addChild(channel, "description", "グリフィン・シュヴィーゾーのブログ記事を含むRSSフィード");
+  addChild(
+    channel,
+    "description",
+    "グリフィン・シュヴィーゾーの最新ブログ記事を配信するRSSフィード。",
+  );
   addChild(channel, "language", "ja");
   addChild(channel, "pubDate", "Tue, 04 Aug 2026 07:08:59 GMT");
   addChild(channel, "lastBuildDate", new Date().toUTCString());
