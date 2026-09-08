@@ -34,18 +34,18 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
-    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/coverage-v8": "^5.0.0",
     "husky": "^9.1.7",
-    "oxfmt": "^0.62.0",
+    "oxfmt": "^0.67.0",
     "oxlint": "^1.74.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.10"
+    "vitest": "^5.0.0"
   },
   "engines": {
     "node": ">=24"
   },
   "allowScripts": {
-    "esbuild@0.28.1": true,
-    "fsevents@2.3.3": true
+    "fsevents@2.3.3": true,
+    "esbuild@0.28.2": true
   }
 }
