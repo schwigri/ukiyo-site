@@ -1,7 +1,10 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { getTranslations } from "@/i18n";
+
+const { s } = getTranslations(Astro.currentLocale);
 ---
 
-<Layout title="職務経歴書">
+<Layout title={s`${s`Résumé`} — Griffen Schwiesow`}>
   <h1>職務経歴書</h1>
 </Layout>

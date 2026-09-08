@@ -1,8 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Ruby from "@/components/Ruby.astro";
+import { getTranslations } from "@/i18n";
+
+const { s } = getTranslations(Astro.currentLocale);
 ---
 
-<Layout title="이력서">
+<Layout title={s`${s`Résumé`} — Griffen Schwiesow`}>
   <h1><Ruby rb="履歷書" rt="이력서" /></h1>
 </Layout>
