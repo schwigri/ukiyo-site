@@ -150,20 +150,6 @@ export function getLocaleFromPathname(pathname: string): Locale {
 }
 
 export function translatePathname(pathname: string, targetLocale: Locale): string | undefined {
-  switch (pathname) {
-    case "/about-me/":
-      pathname = "/about-me.html";
-      break;
-    case "/resume/":
-      pathname = "/resume.html";
-      break;
-    case "/ja/profile/":
-      pathname = "/ja/profile.html";
-      break;
-    case "/ja/shokumukeirekisho/":
-      pathname = "/ja/shokumukeirekisho.html";
-      break;
-  }
   const sourceLocale = getLocaleFromPathname(pathname);
   if (sourceLocale === targetLocale) return pathname;
 

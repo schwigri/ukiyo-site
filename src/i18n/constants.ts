@@ -25,10 +25,8 @@ export const LOCALE_CONFIGS = Object.freeze({
 //----------------------
 
 export const ENGLISH_STRINGS = Object.freeze({
-  "/about-me/": "/about-me/",
   "/about-me.html": "/about-me.html",
   "/blog/": "/blog/",
-  "/resume/": "/resume/",
   "/resume.html": "/resume.html",
   Home: "Home",
   "About me": "About me",
@@ -48,10 +46,8 @@ export const ENGLISH_STRINGS = Object.freeze({
 } as const) satisfies Record<string, string>;
 
 export const JAPANESE_STRINGS = Object.freeze({
-  "/about-me/": "/ja/profile/",
   "/about-me.html": "/ja/profile.html",
   "/blog/": "/ja/blog/",
-  "/resume/": "/ja/shokumukeirekisho/",
   "/resume.html": "/ja/shokumukeirekisho.html",
   Home: "トップ",
   "About me": "プロフィール",
@@ -71,10 +67,8 @@ export const JAPANESE_STRINGS = Object.freeze({
 } as const) satisfies Record<UIString, UITranslation>;
 
 export const KOREAN_STRINGS = Object.freeze({
-  "/about-me/": "/ko/sogae/",
   "/about-me.html": "/ko/sogae.html",
   "/blog/": "/ko/blog/",
-  "/resume/": "/ko/iryeokseo/",
   "/resume.html": "/ko/iryeokseo.html",
   Home: "홈",
   "About me": [{ rb: "紹介", rt: "소개" }],
